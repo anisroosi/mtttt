@@ -1,55 +1,109 @@
 <!doctype html>
-<html>
-  <head>
-    <title>CODERSTOREID.COM Site Maintenance</title>
-    <meta charset="utf-8"/>
-    <meta name="robots" content="noindex"/>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>CODERSTOREID.COM - Sedang Dalam Perawatan</title>
     <style>
-      body { text-align: center; padding: 20px; font: 20px Helvetica, sans-serif; color: #efe8e8; }
-      @media (min-width: 768px){
-        body{ padding-top: 150px; }
-      }
-      h1 { font-size: 50px; }
-      article { display: block; text-align: left; max-width: 650px; margin: 0 auto; }
-      a { color: #dc8100; text-decoration: none; }
-      a:hover { color: #efe8e8; text-decoration: none; }
-    </style>
-  </head>
-  <body bgcolor="2e2929">
-    <article>
-        <h1>We&rsquo;ll be back soon!</h1>
-        <div>
-            <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:#">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
-            <p>&mdash; The Team</p>
-            
-        </div>
-        <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <p class="day"></p>
-            <p class="hour"></p>
-            <p class="minute"></p>
-            <p class="second"></p>
-        </div>
-    </article>
-    <script>
-        const countDown = () => {
-            const countDay = new Date('July 28, 2024 00:00:00');
-            const now = new Date();
-            const counter = countDay - now;
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
-            const textDay = Math.floor(counter / day);
-            const textHour = Math.floor((counter % day) / hour);
-            const textMinute = Math.floor((counter % hour) / minute);
-            const textSecond = Math.floor((counter % minute) / second)
-            document.querySelector(".day").innerText = textDay + ' Days';
-            document.querySelector(".hour").innerText = textHour + ' Hours';
-            document.querySelector(".minute").innerText = textMinute + ' Minutes';
-            document.querySelector(".second").innerText = textSecond + ' Seconds';
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
         }
-        setInterval(countDown, 1000);
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        main {
+            margin-top: 1.5rem;
+        }
+        main p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .countdown div {
+            background: #333;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 0 0.5rem;
+            min-width: 50px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CODERSTOREID.COM</h1>
+            <p>Sedang Dalam Perawatan</p>
+        </header>
+        <main>
+            <article>
+                <p>Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.</p>
+                <p>Terima kasih atas kesabaran Anda. Kami akan segera kembali!</p>
+                <p>&mdash; Tim CODERSTOREID.COM</p>
+                <div class="countdown">
+                    <div class="day">00</div>
+                    <div class="hour">00</div>
+                    <div class="minute">00</div>
+                    <div class="second">00</div>
+                </div>
+            </article>
+        </main>
+    </div>
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("Jun 30, 2024 15:37:25").getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result in the elements
+            document.querySelector(".day").innerHTML = days;
+            document.querySelector(".hour").innerHTML = hours;
+            document.querySelector(".minute").innerHTML = minutes;
+            document.querySelector(".second").innerHTML = seconds;
+            
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
-  </body>
+</body>
 </html>
