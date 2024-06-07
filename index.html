@@ -10,13 +10,14 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #4e54c8, #8f94fb);
             color: #ffffff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             text-align: center;
+            transition: background 0.5s ease;
         }
         .container {
             background: rgba(0, 0, 0, 0.5);
@@ -49,34 +50,63 @@
             border-radius: 5px;
             padding: 1rem;
             margin: 0 0.5rem;
-            min-width: 50px;
+            min-width: 70px;
             font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .countdown div span {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: #bbb;
+        }
+        footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #bbb;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>CODERSTOREID.COM</h1>
-            <p>Sedang Dalam Perawatan</p>
+            <h1 data-i18n="headerTitle">CODERSTOREID.COM</h1>
+            <p data-i18n="headerSubtitle">Sedang Dalam Perawatan</p>
         </header>
         <main>
             <article>
-                <p>Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.</p>
-                <p>Terima kasih atas kesabaran Anda. Kami akan segera kembali!</p>
-                <p>&mdash; Tim CODERSTOREID.COM</p>
+                <p data-i18n="mainText1">Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.</p>
+                <p data-i18n="mainText2">Terima kasih atas kesabaran Anda. Kami akan segera kembali!</p>
+                <p data-i18n="mainText3">&mdash; Tim CODERSTOREID.COM</p>
                 <div class="countdown">
-                    <div class="day">00</div>
-                    <div class="hour">00</div>
-                    <div class="minute">00</div>
-                    <div class="second">00</div>
+                    <div class="day">00<br><span data-i18n="days">Hari</span></div>
+                    <div class="hour">00<br><span data-i18n="hours">Jam</span></div>
+                    <div class="minute">00<br><span data-i18n="minutes">Menit</span></div>
+                    <div class="second">00<br><span data-i18n="seconds">Detik</span></div>
                 </div>
             </article>
         </main>
     </div>
+    <footer>
+        © copyright reserved Coderstore.com - made with ❤️‍🔥
+    </footer>
     <script>
+        // Function to get a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Set a random background color
+        document.body.style.background = `linear-gradient(to right, ${getRandomColor()}, ${getRandomColor()})`;
+
         // Set the date we're counting down to
-        const countDownDate = new Date("July 1, 2024 15:37:25").getTime();
+        const countDownDate = new Date("July 30, 2024 15:37:25").getTime();
 
         // Update the count down every 1 second
         const x = setInterval(function() {
@@ -93,10 +123,10 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
             // Display the result in the elements
-            document.querySelector(".day").innerHTML = days;
-            document.querySelector(".hour").innerHTML = hours;
-            document.querySelector(".minute").innerHTML = minutes;
-            document.querySelector(".second").innerHTML = seconds;
+            document.querySelector(".day").innerHTML = days + "<br><span data-i18n='days'>Hari</span>";
+            document.querySelector(".hour").innerHTML = hours + "<br><span data-i18n='hours'>Jam</span>";
+            document.querySelector(".minute").innerHTML = minutes + "<br><span data-i18n='minutes'>Menit</span>";
+            document.querySelector(".second").innerHTML = seconds + "<br><span data-i18n='seconds'>Detik</span>";
             
             // If the count down is over, write some text 
             if (distance < 0) {
@@ -104,6 +134,79 @@
                 document.querySelector(".countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
+
+        // Translation data
+        const translations = {
+            en: {
+                headerTitle: "CODERSTOREID.COM",
+                headerSubtitle: "Under Maintenance",
+                mainText1: "We are doing some important work to improve our website to provide the best experience for you.",
+                mainText2: "Thank you for your patience. We will be back soon!",
+                mainText3: "&mdash; CODERSTOREID.COM Team",
+                days: "Days",
+                hours: "Hours",
+                minutes: "Minutes",
+                seconds: "Seconds"
+            },
+            id: {
+                headerTitle: "CODERSTOREID.COM",
+                headerSubtitle: "Sedang Dalam Perawatan",
+                mainText1: "Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.",
+                mainText2: "Terima kasih atas kesabaran Anda. Kami akan segera kembali!",
+                mainText3: "&mdash; Tim CODERSTOREID.COM",
+                days: "Hari",
+                hours: "Jam",
+                minutes: "Menit",
+                seconds: "Detik"
+            },
+            jv: {
+                headerTitle: "CODERSTOREID.COM",
+                headerSubtitle: "Sedang Nglakoni Perawatan",
+                mainText1: "Kita lagi nglakoake gawean penting kanggo ningkatake situs web kita supaya bisa nyedhiyakake pengalaman paling apik kanggo sampeyan.",
+                mainText2: "Matur nuwun sanget atas kesabaran sampeyan. Kita bakal bali enggal!",
+                mainText3: "&mdash; Tim CODERSTOREID.COM",
+                days: "Dina",
+                hours: "Jam",
+                minutes: "Menit",
+                seconds: "Detik"
+            },
+            bt: {
+                headerTitle: "CODERSTOREID.COM",
+                headerSubtitle: "Sedang Dalam Perawatan",
+                mainText1: "Hami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website hami agar dapat memberikan pengalaman terbaik bagi ho.",
+                mainText2: "Terima kasih atas kesabaran ho. Hami ma hupakkir!",
+                mainText3: "&mdash; Tim CODERSTOREID.COM",
+                days: "Ari",
+                hours: "Jam",
+                minutes: "Menit",
+                seconds: "Detik"
+            }
+            // Add other languages here
+        };
+
+        // Detect user's language
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.split('-')[0]; // Use the first part of the language code
+
+        // Translate the content
+        function translateContent(language) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[language] && translations[language][key]) {
+                    element.innerHTML = translations[language][key];
+                }
+            });
+        }
+
+        // Translate content to user's language if available, otherwise use default
+        if (translations[lang]) {
+            translateContent(lang);
+        } else {
+            translateContent('id'); // Default language
+        }
     </script>
+</body>
+</html>
 </body>
 </html>
