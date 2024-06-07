@@ -27,6 +27,8 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
         }
         header h1 {
             margin: 0;
@@ -58,23 +60,42 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         .countdown div span {
             font-size: 0.8rem;
             margin-top: 0.5rem;
             color: #bbb;
+            transform: translateZ(30px);
         }
         footer {
             margin-top: 2rem;
             font-size: 0.8rem;
-            color: #bbb;
+            color: #ffffff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
         }
         footer p {
             margin: 0;
-            font-size: 0.8rem;
-            color: #00f;
-            font-weight: bold;
+        }
+        .translate-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .translate-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -95,11 +116,18 @@
                     <div class="minute">00<br><span data-i18n="minutes">Menit</span></div>
                     <div class="second">00<br><span data-i18n="seconds">Detik</span></div>
                 </div>
+                <button class="translate-button" onclick="showLanguageOptions()">Translate</button>
+                <div id="language-options" style="display: none;">
+                    <button class="translate-option-button" onclick="translateContent('id')">Bahasa Indonesia</button>
+                    <button class="translate-option-button" onclick="translateContent('en')">English</button>
+                    <button class="translate-option-button" onclick="translateContent('jv')">Javanese</button>
+                    <button class="translate-option-button" onclick="translateContent('bt')">Batak Toba</button>
+                </div>
             </article>
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 CODERSTOREID.COM - All Rights Reserved - made with ❤️‍🔥</p>
+        <p style="color: #fff;">&copy; 2024 CODERSTOREID.COM - All Rights Reserved - made with ❤️‍🔥</p>
     </footer>
     <script>
         // Function to get a random color
@@ -116,7 +144,7 @@
         document.body.style.background = `linear-gradient(to right, ${getRandomColor()}, ${getRandomColor()})`;
 
         // Set the date we're counting down to
-        const countDownDate = new Date("Jun 30, 2024 15:37:25").getTime();
+        const countDownDate = new Date("Jun 30, 2029 15:37:25").getTime();
 
         // Update the count down every 1 second
         const x = setInterval(function() {
@@ -207,13 +235,19 @@
                     element.innerHTML = translations[language][key];
                 }
             });
+            hideLanguageOptions();
         }
 
-        // Translate content to user's language if available, otherwise use default
-        if (translations[lang]) {
-            translateContent(lang);
-        } else {
-            translateContent('id'); // Default language
+        // Show language options
+        function showLanguageOptions() {
+            const languageOptions = document.getElementById('language-options');
+            languageOptions.style.display = 'block';
+        }
+
+        // Hide language options
+        function hideLanguageOptions() {
+            const languageOptions = document.getElementById('language-options');
+            languageOptions.style.display = 'none';
         }
     </script>
 </body>
