@@ -173,6 +173,34 @@
         footer p {
             margin: 0;
         }
+
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: none;
+            max-width: 300px;
+        }
+
+        .popup a {
+            color: #25d366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -187,10 +215,6 @@
                 <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
                 <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
                 <p>— Tim CODERSTOREID.COM</p>
-                <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui customer care kami.</p>
-                <a class="whatsapp-link" href="https://wa.me/6285740234975" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Hubungi Kami di WhatsApp
-                </a>
                 <div class="countdown-container">
                     <p class="countdown-title">Estimasi waktu perbaikan web</p>
                     <div class="countdown">
@@ -206,6 +230,10 @@
     <footer>
         <p><a href="https://coderstoreid.com" style="color: white; text-decoration: none;">&copy; 2024 CODERSTOREID.COM - All Rights Reserved - made with ❤️‍🔥</a></p>
     </footer>
+    <div class="popup" id="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+        Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui customer care kami. <a href="https://wa.me/6285740234975" target="_blank">Hubungi Kami di WhatsApp</a>
+    </div>
     <script>
         // Set the date we're counting down to
         const countDownDate = new Date("July 1, 2024 00:00:00").getTime();
@@ -236,6 +264,11 @@
                 document.querySelector(".countdown").innerHTML = "PERBAIKAN SELESAI";
             }
         }, 1000);
+
+        // Show the popup after 5 seconds
+        setTimeout(function () {
+            document.getElementById('popup').style.display = 'block';
+        }, 5000);
     </script>
 </body>
 </html>
