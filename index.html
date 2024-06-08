@@ -136,6 +136,26 @@
             100% {top: 150%; left: 150%;}
         }
 
+        .whatsapp-link {
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #25d366;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .whatsapp-link img {
+            width: 30px;
+            height: 30px;
+            margin-right: 0.5rem;
+        }
+
         footer {
             font-size: 0.8rem;
             color: #ffffff;
@@ -164,9 +184,13 @@
         </header>
         <main>
             <article>
-                <p>Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.</p>
-                <p>Terima kasih atas kesabaran Anda. Kami akan segera kembali!</p>
-                <p>&mdash; Tim CODERSTOREID.COM</p>
+                <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
+                <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
+                <p>— Tim CODERSTOREID.COM</p>
+                <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui customer care kami.</p>
+                <a class="whatsapp-link" href="https://wa.me/6285740234975" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Hubungi Kami di WhatsApp
+                </a>
                 <div class="countdown-container">
                     <p class="countdown-title">Estimasi waktu perbaikan web</p>
                     <div class="countdown">
@@ -209,7 +233,7 @@
             // If the count down is over, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.querySelector(".countdown").innerHTML = "EXPIRED";
+                document.querySelector(".countdown").innerHTML = "PERBAIKAN SELESAI";
             }
         }, 1000);
     </script>
