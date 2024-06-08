@@ -162,6 +162,35 @@
             background: black; /* Warna latar belakang untuk dark mode */
             color: white; /* Warna teks untuk dark mode */
         }
+
+        /* Gaya untuk tombol dark mode aktif */
+        .dark-mode-button.dark-mode {
+            background: #fff; /* Warna latar belakang tombol dark mode saat mode dark aktif */
+            color: #333; /* Warna teks tombol dark mode saat mode dark aktif */
+        }
+
+        /* Gaya untuk teks artikel */
+        .article-text {
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Gaya untuk notifikasi pop-up */
+        .notification {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 1rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Gaya untuk tautan di notifikasi pop-up */
+        .notification a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -192,7 +221,7 @@
     </footer>
     <div id="popup" class="popup">
         <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975" style="color: #4CAF50;">customer care kami</a>.</p>
+        <p class="notification">Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975">customer care kami</a>.</p>
     </div>
     <button class="dark-mode-button" onclick="toggleDarkMode()">
         <span class="dark-mode-icon">🌙</span> Dark Mode
@@ -203,22 +232,16 @@
             document.body.classList.toggle('dark-mode'); // Menambahkan atau menghapus kelas 'dark-mode'
             const btn = document.querySelector('.dark-mode-button'); // Mendapatkan tombol dark mode
             if (document.body.classList.contains('dark-mode')) { // Jika dalam mode dark
-                btn.innerHTML = '<span class="dark-mode-icon">☀️</span> Light Mode'; // Ubah teks tombol
-                btn.style.backgroundColor = '#fff'; // Ubah warna latar belakang tombol
-                btn.style.color = '#333'; // Ubah warna teks tombol
-            } else { // Jika tidak dalam mode dark
-                btn.innerHTML = '<span class="dark-mode-icon">🌙</span> Dark Mode'; // Ubah teks tombol
-                btn.style.backgroundColor = '#333'; // Ubah warna latar belakang tombol
-                btn.style.color = '#fff'; // Ubah warna teks tombol
+                btn.innerHTML = '<span class="dark-mode-icon">☀️</span> Light Mode'; // Mengubah teks tombol
+            } else {
+                btn.innerHTML = '<span class="dark-mode-icon">🌙</span> Dark Mode'; // Mengembalikan teks tombol
             }
         }
 
-        // Set tanggal countdown
-        const countDownDate = new Date("July 1, 2024 00:00:00").getTime();
-
-        // Perbarui countdown setiap 1 detik
+        // Pengaturan countdown
+        const countDownDate = new Date("July 1, 2024 00:00:00").getTime(); // Waktu target
         const x = setInterval(function() {
-            const now = new Date().getTime(); // Mendapatkan waktu saat ini
+            const now = new Date().getTime(); // Waktu saat ini
             const distance = countDownDate - now; // Menghitung jarak waktu hingga target
 
             // Kalkulasi waktu untuk hari, jam, menit, dan detik
