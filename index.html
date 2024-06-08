@@ -72,25 +72,18 @@
         }
 
         .countdown div {
-            background: #333;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             padding: 1rem;
             margin: 0 0.5rem;
             min-width: 70px;
-            font-size: 1.2rem;
+            font-size: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: rotate 5s infinite linear;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .countdown div span {
@@ -99,65 +92,27 @@
             color: #bbb;
         }
 
-        .translate-button {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-            margin-top: 2rem;
-            outline: none;
-            position: relative;
-        }
-
-        .translate-button:hover {
-            background-color: #0056b3;
-        }
-
-        .translate-button:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .language-options {
-            display: none;
+        .countdown div::before {
+            content: '';
             position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #fff;
-            color: #333;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            overflow: hidden;
-            z-index: 1;
-            width: 200px;
-            text-align: left;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
+            transform: rotate(45deg);
+            animation: shine 5s infinite linear;
         }
 
-        .language-options button {
-            width: 100%;
-            padding: 10px;
-            background-color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .language-options button:hover {
-            background-color: #f0f0f0;
-        }
-
-        .language-options button:active {
-            background-color: #e0e0e0;
+        @keyframes shine {
+            0% {
+                top: -50%;
+                left: -50%;
+            }
+            100% {
+                top: 150%;
+                left: 150%;
+            }
         }
 
         footer {
@@ -194,32 +149,12 @@
                     <div class="second">00<br><span>Detik</span></div>
                 </div>
             </article>
-            <button class="translate-button" onclick="toggleLanguageOptions()">Translate</button>
-            <div class="language-options" id="language-options">
-                <button onclick="translateContent('id')">Bahasa Indonesia</button>
-                <button onclick="translateContent('en')">English</button>
-                <button onclick="translateContent('jv')">Javanese</button>
-                <button onclick="translateContent('bt')">Batak Toba</button>
-            </div>
         </main>
     </div>
     <footer>
         <p>&copy; 2024 CODERSTOREID.COM - All Rights Reserved - made with ❤️‍🔥</p>
     </footer>
     <script>
-        // Function to get a random color
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        // Set a random background color
-        document.body.style.background = `linear-gradient(to right, ${getRandomColor()}, ${getRandomColor()})`;
-
         // Set the date we're counting down to
         const countDownDate = new Date("Jun 30, 2024 15:37:25").getTime();
 
@@ -249,90 +184,6 @@
                 document.querySelector(".countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
-
-        // Translation data
-        const translations = {
-            en: {
-                headerTitle: "CODERSTOREID.COM",
-                headerSubtitle: "Under Maintenance",
-                mainText1: "We are doing some important work to improve our website to provide the best experience for you.",
-                mainText2: "Thank you for your patience. We will be back soon!",
-                mainText3: "&mdash; CODERSTOREID.COM Team",
-                days: "Days",
-                hours: "Hours",
-                minutes: "Minutes",
-                seconds: "Seconds"
-            },
-            id: {
-                headerTitle: "CODERSTOREID.COM",
-                headerSubtitle: "Sedang Dalam Perawatan",
-                mainText1: "Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.",
-                mainText2: "Terima kasih atas kesabaran Anda. Kami akan segera kembali!",
-                mainText3: "&mdash; Tim CODERSTOREID.COM",
-                days: "Hari",
-                hours: "Jam",
-                minutes: "Menit",
-                seconds: "Detik"
-            },
-            jv: {
-                headerTitle: "CODERSTOREID.COM",
-                headerSubtitle: "Sedang Nglakoni Perawatan",
-                mainText1: "Kita lagi nglakoake gawean penting kanggo ningkatake situs web kita supaya bisa nyedhiyakake pengalaman paling apik kanggo sampeyan.",
-                mainText2: "Matur nuwun sanget atas kesabaran sampeyan. Kita bakal bali enggal!",
-                mainText3: "&mdash; Tim CODERSTOREID.COM",
-                days: "Dina",
-                hours: "Jam",
-                minutes: "Menit",
-                seconds: "Detik"
-            },
-            bt: {
-                headerTitle: "CODERSTOREID.COM",
-                headerSubtitle: "Sedang Dalam Perawatan",
-                mainText1: "Hami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website hami agar dapat memberikan pengalaman terbaik bagi ho.",
-                mainText2: "Terima kasih atas kesabaran ho. Hami ma hupakkir!",
-                mainText3: "&mdash; Tim CODERSTOREID.COM",
-                days: "Ari",
-                hours: "Jam",
-                minutes: "Menit",
-                seconds: "Detik"
-            }
-            // Add other languages here
-        };
-
-        // Translate the content
-        function translateContent(language) {
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[language] && translations[language][key]) {
-                    element.innerHTML = translations[language][key];
-                }
-            });
-            hideLanguageOptions();
-        }
-
-        // Toggle language options visibility
-        function toggleLanguageOptions() {
-            const languageOptions = document.getElementById('language-options');
-            languageOptions.style.display = languageOptions.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Hide language options
-        function hideLanguageOptions() {
-            const languageOptions = document.getElementById('language-options');
-            languageOptions.style.display = 'none';
-        }
-
-        // Detect user's language
-        const userLang = navigator.language || navigator.userLanguage;
-        const lang = userLang.split('-')[0]; // Use the first part of the language code
-
-        // Translate content to user's language if available, otherwise use default
-        if (translations[lang]) {
-            translateContent(lang);
-        } else {
-            translateContent('id'); // Default language
-        }
     </script>
 </body>
 </html>
