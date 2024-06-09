@@ -6,12 +6,11 @@
     <meta name="robots" content="noindex">
     <title>CODERSTOREID.COM - Sedang Dalam Perawatan</title>
     <style>
-        /* Gaya dasar untuk seluruh tubuh halaman */
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -19,11 +18,28 @@
             height: 100vh;
             text-align: center;
             overflow: hidden;
-            background: white;
-            transition: background-color 0.3s, color 0.3s;
+            background: black;
         }
 
-        /* Container utama untuk konten halaman */
+        .rgb-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            background-size: 600% 600%;
+            animation: moveBackground 20s ease infinite;
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        @keyframes moveBackground {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
         .container {
             background-color: transparent;
             padding: 2rem;
@@ -33,37 +49,31 @@
             position: relative;
         }
 
-        /* Gaya untuk judul di header */
         header h1 {
             margin: 0;
             font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        /* Gaya untuk subtitle di header */
         header p {
             margin: 0;
             font-size: 1.2rem;
         }
 
-        /* Gaya untuk konten utama */
         main {
             margin-top: 1.5rem;
         }
 
-        /* Gaya untuk paragraf di konten utama */
         main p {
             margin: 0.5rem 0;
             font-size: 1rem;
             line-height: 1.6;
         }
 
-        /* Container untuk countdown */
         .countdown-container {
             margin-top: 2rem;
         }
 
-        /* Gaya untuk judul countdown */
         .countdown-title {
             font-size: 1.5rem;
             background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff0000);
@@ -74,167 +84,251 @@
             margin-bottom: 1rem;
         }
 
-        /* Animasi untuk efek teks berwarna-warni */
         @keyframes gradientText {
             0% {background-position: 0% 50%;}
             50% {background-position: 100% 50%;}
             100% {background-position: 0% 50%;}
         }
 
-        /* Gaya untuk elemen countdown */
         .countdown {
             display: flex;
             justify-content: center;
             margin-top: 1rem;
         }
 
-        /* Gaya untuk setiap blok di countdown */
         .countdown div {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 1rem;
             margin: 0 0.5rem;
             min-width: 70px;
-            font-size: 1.2rem;
+            font-size: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
         }
 
-        /* Gaya untuk teks di dalam blok countdown */
         .countdown div span {
             font-size: 0.8rem;
             margin-top: 0.5rem;
-            color: #666;
+            color: #bbb;
         }
 
-        /* Gaya untuk footer */
-        footer {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #333;
-        }
-
-        /* Gaya untuk tombol dark mode */
-        .dark-mode-button {
+        .countdown div::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: background 0.3s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
+            transform: rotate(45deg);
+            animation: shine 5s infinite linear;
         }
 
-        /* Gaya untuk ikon tombol dark mode */
-        .dark-mode-icon {
-            font-size: 1.2rem;
-            margin-right: 5px;
+        @keyframes shine {
+            0% {top: -50%; left: -50%;}
+            100% {top: 150%; left: 150%;}
         }
 
-        /* Gaya untuk pop-up notifikasi */
+        footer {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+            margin-top: auto;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            position: absolute;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
         .popup {
-            display: none;
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
             color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: none;
+            max-width: 300px;
         }
 
-        /* Gaya untuk tombol close di pop-up */
+        .popup a {
+            color: #25d366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         .popup-close {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 5px;
+            right: 5px;
             cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .button {
+            height: 50px;
+            width: 200px;
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+            border: 2px solid #252525;
+            overflow: hidden;
+            border-radius: 30px;
+            color: #333;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .btn-txt {
+            z-index: 1;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .type1::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.5s ease-in-out;
+            background-color: #333;
+            border-radius: 30px;
+            visibility: hidden;
+            height: 10px;
+            width: 10px;
+            z-index: -1;
+        }
+
+        .button:hover {
+            box-shadow: 1px 1px 200px #252525;
+            color: #fff;
+            border: none;
+        }
+
+        .type1:hover::after {
+            visibility: visible;
+            transform: scale(100) translateX(2px);
+        }
+
+        .article-background {
+            height: auto;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            background-color: transparent;
+            cursor: default;
+            border: 2px solid #252525;
+            overflow: hidden;
+            border-radius: 30px;
+            color: #333;
+            transition: all 0.5s ease-in-out;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .article-background::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.5s ease-in-out;
+            background-color: #333;
+            border-radius: 30px;
+            visibility: hidden;
+            height: 10px;
+            width: 10px;
+            z-index: -1;
+        }
+
+        .article-background:hover::after {
+            visibility: visible;
+            transform: scale(100) translateX(2px);
         }
     </style>
 </head>
 <body>
+    <div class="rgb-background"></div>
     <div class="container">
         <header>
-            <h1><a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a></h1>
+            <h1><a href="https://coderstoreid.com" style="color: white; text-decoration: none;">CODERSTOREID.COM</a></h1>
             <p>Sedang Dalam Perawatan</p>
         </header>
         <main>
-            <article>
-                <p>Kami sedang melakukan beberapa pekerjaan penting untuk meningkatkan website kami agar dapat memberikan pengalaman terbaik bagi Anda.</p>
-                <p>Terima kasih atas kesabaran Anda. Kami akan segera kembali!</p>
-                <p>&mdash; Tim CODERSTOREID.COM</p>
-            </article>
-            <div class="countdown-container">
-                <div class="countdown-title">Estimasi Waktu Perbaikan Web</div>
-                <div class="countdown">
-                    <div class="day">00<br><span>Hari</span></div>
-                    <div class="hour">00<br><span>Jam</span></div>
-                    <div class="minute">00<br><span>Menit</span></div>
-                    <div class="second">00<br><span>Detik</span></div>
-                </div>
+            <div class="article-background">
+                <article>
+                    <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
+                    <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
+                    <p>— Tim CODERSTOREID.COM</p>
+                    <div class="countdown-container">
+                        <p class="countdown-title">Estimasi waktu perbaikan web</p>
+                        <div class="countdown">
+                            <div class="day">00<br><span>Hari</span></div>
+                            <div class="hour">00<br><span>Jam</span></div>
+                            <div class="minute">00<br><span>Menit</span></div>
+                            <div class="second">00<br><span>Detik</span></div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a></p>
+        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: white; text-decoration: none;">CODERSTOREID.COM</a></p>
     </footer>
     <div id="popup" class="popup">
         <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975" style="color: #4CAF50;">customer care kami</a>.</p>
+        <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975">customer care kami</a>.</p>
     </div>
-    <button class="dark-mode-button" onclick="toggleDarkMode()">
-        <span class="dark-mode-icon">🌙</span> Dark Mode
-    </button>
     <script>
-        // Fungsi untuk toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const btn = document.querySelector('.dark-mode-button');
-            if (document.body.classList.contains('dark-mode')) {
-                btn.innerHTML = '<span class="dark-mode-icon">☀️</span> Light Mode';
-                btn.style.backgroundColor = '#fff';
-                btn.style.color = '#333';
-            } else {
-                btn.innerHTML = '<span class="dark-mode-icon">🌙</span> Dark Mode';
-                btn.style.backgroundColor = '#333';
-                btn.style.color = '#fff';
-            }
-        }
-
-        // Set tanggal countdown
+        // Set the date we're counting down to
         const countDownDate = new Date("July 1, 2024 00:00:00").getTime();
 
-        // Perbarui countdown setiap 1 detik
-        const x = setInterval(function() {
+        // Update the count down every 1 second
+        const x = setInterval(function () {
+            // Get today's date and time
             const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
             const distance = countDownDate - now;
 
-            // Kalkulasi waktu untuk hari, jam, menit, dan detik
+            // Time calculations for days, hours, minutes and seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Tampilkan hasil di elemen-elemen
+            // Display the result in the elements
             document.querySelector(".day").innerHTML = (days < 10 ? '0' : '') + days + "<br><span>Hari</span>";
             document.querySelector(".hour").innerHTML = (hours < 10 ? '0' : '') + hours + "<br><span>Jam</span>";
             document.querySelector(".minute").innerHTML = (minutes < 10 ? '0' : '') + minutes + "<br><span>Menit</span>";
             document.querySelector(".second").innerHTML = (seconds < 10 ? '0' : '') + seconds + "<br><span>Detik</span>";
 
-            // Jika countdown selesai, tampilkan popup notifikasi
+            // If the count down is over, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("popup").style.display = "block";
-                document.querySelector(".countdown").style.display = "none";
-                document.querySelector(".countdown-title").innerHTML = "Perawatan Selesai!";
+                document.querySelector(".countdown").innerHTML = "PERBAIKAN SELESAI";
             }
         }, 1000);
+
+        // Show the popup after 5 seconds
+        setTimeout(function () {
+            document.getElementById('popup').style.display = 'block';
+        }, 5000);
     </script>
 </body>
 </html>
