@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            color: #ffffff;
+            color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -18,7 +18,7 @@
             height: 100vh;
             text-align: center;
             overflow: hidden;
-            background: black;
+            background: white;
         }
 
         .container {
@@ -33,7 +33,7 @@
         header h1 {
             margin: 0;
             font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: none;
         }
 
         header p {
@@ -67,7 +67,7 @@
         }
 
         .countdown div {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             padding: 1rem;
             margin: 0 0.5rem;
@@ -79,19 +79,19 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            color: #ffffff;
+            color: #000000;
         }
 
         .countdown div span {
             font-size: 0.8rem;
             margin-top: 0.5rem;
-            color: #bbb;
+            color: #555;
         }
 
         footer {
             font-size: 0.8rem;
-            color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            color: #000000;
+            text-shadow: none;
             font-weight: bold;
             margin-top: auto;
             padding: 1rem 0;
@@ -110,8 +110,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.8);
+            color: #000;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -131,7 +131,7 @@
             right: 5px;
             cursor: pointer;
             font-size: 18px;
-            color: #fff;
+            color: #000;
         }
 
         .button {
@@ -217,7 +217,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><a href="https://coderstoreid.com" style="color: white; text-decoration: none;">CODERSTOREID.COM</a></h1>
+            <h1><a href="https://coderstoreid.com" style="color: black; text-decoration: none;">CODERSTOREID.COM</a></h1>
             <p>Sedang Dalam Perawatan</p>
         </header>
         <main>
@@ -240,7 +240,7 @@
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: white; text-decoration: none;">CODERSTOREID.COM</a></p>
+        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: black; text-decoration: none;">CODERSTOREID.COM</a></p>
     </footer>
     <div id="popup" class="popup">
         <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
