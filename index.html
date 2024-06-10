@@ -20,6 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
         .overlay {
@@ -34,44 +35,45 @@
         .content {
             position: relative;
             z-index: 1;
-            text-align: center;
             padding: 2rem;
+            max-width: 90%;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 2.5rem;
             margin: 0;
             letter-spacing: 2px;
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin: 1rem 0;
         }
 
         p {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin: 1rem 0;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .countdown div {
             background: rgba(255, 255, 255, 0.2);
             padding: 1rem;
             border-radius: 10px;
-            width: 80px;
+            min-width: 60px;
             text-align: center;
         }
 
         .countdown div span {
             display: block;
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-top: 0.5rem;
         }
 
@@ -82,6 +84,28 @@
             text-align: center;
             font-size: 0.8rem;
             color: #aaa;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.5rem;
+            }
+
+            .countdown div {
+                min-width: 80px;
+            }
+
+            .countdown div span {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
