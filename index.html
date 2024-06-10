@@ -139,108 +139,25 @@
             color: #555;
             margin-top: 1rem;
         }
-
-        .button {
-            all: unset;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 0.6em 2em;
-            border: mediumspringgreen solid 0.15em;
-            border-radius: 0.25em;
-            color: mediumspringgreen;
-            font-size: 1.5em;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            transition: border 300ms, color 300ms;
-            user-select: none;
-        }
-
-        .button p {
-            z-index: 1;
-        }
-
-        .button:hover {
-            color: #212121;
-        }
-
-        .button:active {
-            border-color: teal;
-        }
-
-        .button::after, .button::before {
-            content: "";
-            position: absolute;
-            width: 9em;
-            aspect-ratio: 1;
-            background: mediumspringgreen;
-            opacity: 50%;
-            border-radius: 50%;
-            transition: transform 500ms, background 300ms;
-        }
-
-        .button::before {
-            left: 0;
-            transform: translateX(-8em);
-        }
-
-        .button::after {
-            right: 0;
-            transform: translateX(8em);
-        }
-
-        .button:hover:before {
-            transform: translateX(-1em);
-        }
-
-        .button:hover:after {
-            transform: translateX(1em);
-        }
-
-        .button:active:before,
-        .button:active:after {
-            background: teal;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <button class="button">
-                <p><a href="https://coderstoreid.com">CODERSTOREID.COM</a></p>
-            </button>
-            <button class="button">
-                <p>Sedang Dalam Perawatan</p>
-            </button>
+            <h1><a href="https://coderstoreid.com">CODERSTOREID.COM</a></h1>
+            <p>Sedang Dalam Perawatan</p>
         </header>
         <main>
-            <button class="button">
-                <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
-            </button>
-            <button class="button">
-                <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
-            </button>
-            <button class="button">
-                <p>— Tim CODERSTOREID.COM</p>
-            </button>
+            <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
+            <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
+            <p>— Tim CODERSTOREID.COM</p>
             <div class="countdown-container">
-                <button class="button">
-                    <p class="countdown-title">Estimasi waktu perbaikan web</p>
-                </button>
+                <p class="countdown-title">Estimasi waktu perbaikan web</p>
                 <div class="countdown">
-                    <button class="button">
-                        <p class="day">00<br><span>Hari</span></p>
-                    </button>
-                    <button class="button">
-                        <p class="hour">00<br><span>Jam</span></p>
-                    </button>
-                    <button class="button">
-                        <p class="minute">00<br><span>Menit</span></p>
-                    </button>
-                    <button class="button">
-                        <p class="second">00<br><span>Detik</span></p>
-                    </button>
+                    <div class="day">00<br><span>Hari</span></div>
+                    <div class="hour">00<br><span>Jam</span></div>
+                    <div class="minute">00<br><span>Menit</span></div>
+                    <div class="second">00<br><span>Detik</span></div>
                 </div>
             </div>
         </main>
