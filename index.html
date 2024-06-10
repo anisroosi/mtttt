@@ -5,168 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <title>CODERSTOREID.COM - Sedang Dalam Perawatan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            color: #333;
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            background: #000 url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            background-color: #fff;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 90%;
-            margin: 2rem;
         }
 
-        header h1 {
+        h1 {
+            font-size: 4rem;
             margin: 0;
-            font-size: 3rem;
-            color: #2c3e50;
+            letter-spacing: 2px;
         }
 
-        header p {
-            margin: 0;
+        p {
             font-size: 1.5rem;
-            color: #7f8c8d;
-        }
-
-        main {
-            margin-top: 2rem;
-        }
-
-        main p {
             margin: 1rem 0;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #34495e;
-        }
-
-        .countdown-container {
-            margin-top: 2rem;
-        }
-
-        .countdown-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .countdown div {
-            background: #ecf0f1;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
             border-radius: 10px;
-            padding: 1.5rem;
-            font-size: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            min-width: 100px;
+            width: 80px;
+            text-align: center;
         }
 
         .countdown div span {
-            font-size: 1rem;
+            display: block;
+            font-size: 1.2rem;
             margin-top: 0.5rem;
-            color: #95a5a6;
         }
 
         footer {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: 2rem;
-            color: #95a5a6;
-            text-align: center;
-            width: 100%;
-        }
-
-        footer a {
-            color: #2c3e50;
-            text-decoration: none;
-        }
-
-        #current-time, #visitor-info {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-top: 1rem;
-        }
-
-        .popup {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #fff;
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            display: none;
-            max-width: 300px;
-        }
-
-        .popup a {
-            color: #25d366;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .popup-close {
             position: absolute;
-            top: 5px;
-            right: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #333;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><a href="https://coderstoreid.com">CODERSTOREID.COM</a></h1>
-            <p>Sedang Dalam Perawatan</p>
-        </header>
-        <main>
-            <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
-            <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
-            <p>— Tim CODERSTOREID.COM</p>
-            <div class="countdown-container">
-                <p class="countdown-title">Estimasi waktu perbaikan web</p>
-                <div class="countdown">
-                    <div class="day">00<br><span>Hari</span></div>
-                    <div class="hour">00<br><span>Jam</span></div>
-                    <div class="minute">00<br><span>Menit</span></div>
-                    <div class="second">00<br><span>Detik</span></div>
-                </div>
-            </div>
-        </main>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>CODERSTOREID.COM</h1>
+        <p>Sedang Dalam Perawatan</p>
+        <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami akan segera kembali dengan layanan yang lebih baik.</p>
+        <div class="countdown">
+            <div class="day">00<br><span>Hari</span></div>
+            <div class="hour">00<br><span>Jam</span></div>
+            <div class="minute">00<br><span>Menit</span></div>
+            <div class="second">00<br><span>Detik</span></div>
+        </div>
     </div>
     <footer>
-        <div id="current-time"></div>
-        <div id="visitor-info"></div>
-        <p>&copy; 2024 <a href="https://coderstoreid.com">CODERSTOREID.COM</a> - ALL RIGHTS RESERVED.</p>
+        &copy; 2024 CODERSTOREID.COM - All Rights Reserved.
     </footer>
-    <div id="popup" class="popup">
-        <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975">customer care kami</a>.</p>
-    </div>
     <script>
         const countDownDate = new Date("July 1, 2024 00:00:00").getTime();
         const x = setInterval(function () {
@@ -187,35 +115,6 @@
                 document.querySelector(".countdown").innerHTML = "PERBAIKAN SELESAI";
             }
         }, 1000);
-
-        setTimeout(function () {
-            document.getElementById('popup').style.display = 'block';
-        }, 5000);
-
-        function updateCurrentTime() {
-            const now = new Date();
-            const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
-            const formattedTime = now.toLocaleTimeString('id-ID', options);
-            document.getElementById('current-time').textContent = `Waktu saat ini: ${formattedTime}`;
-        }
-
-        function getVisitorInfo() {
-            fetch('https://api64.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    const userAgent = navigator.userAgent;
-                    const device = /mobile/i.test(userAgent) ? 'Mobile' : /iPad|iPhone|iPod/.test(userAgent) ? 'iOS' : /Android/.test(userAgent) ? 'Android' : 'Desktop';
-                    const visitorInfo = document.getElementById('visitor-info');
-                    visitorInfo.innerHTML = `<p>IP Address: ${ip}</p><p>Device: ${device}</p>`;
-                })
-                .catch(error => console.error('Error fetching IP:', error));
-        }
-
-        updateCurrentTime();
-        setInterval(updateCurrentTime, 1000);
-        getVisitorInfo();
-        setInterval(getVisitorInfo, 60000);
     </script>
 </body>
 </html>
