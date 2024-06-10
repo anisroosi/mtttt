@@ -302,6 +302,18 @@
         setTimeout(function () {
             document.getElementById('popup').style.display = 'block';
         }, 5000);
+        // Update current time every second
+function updateCurrentTime() {
+    const now = new Date();
+    const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+    const formattedTime = now.toLocaleTimeString('en-US', options);
+    document.getElementById('current-time').textContent = `Waktu saat ini: ${formattedTime}`;
+}
+
+// Update current time immediately and then every second
+updateCurrentTime();
+setInterval(updateCurrentTime, 1000);
+
     </script>
 </body>
 </html>
