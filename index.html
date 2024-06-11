@@ -243,11 +243,11 @@
             day: document.querySelector(".day"),
             hour: document.querySelector(".hour"),
             minute: document.querySelector(".minute"),
-            second: document.querySelector(".second")
+            second: document.querySelector(".second"),
         };
 
         const countdown = () => {
-            const targetDate = new Date("July 1, 2024 23:59:59").getTime();
+            const targetDate = new Date("June 30, 2024 23:59:59").getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
 
@@ -328,6 +328,13 @@
             console.error("Geolokasi tidak didukung oleh browser ini.");
             displayLocalTime("Lokasi Anda");
         }
+
+        // Mencegah pengalihan ke time.is
+        document.addEventListener("click", (e) => {
+            if (e.target.tagName === "A" && e.target.href.includes("time.is")) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
