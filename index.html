@@ -127,62 +127,74 @@
             transition: color 0.5s;
         }
 
-        .button {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            height: 50px;
-            width: 200px;
-            cursor: pointer;
-            border: 2px solid #252525;
+        .btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            border-radius: 30px;
-            color: #333;
-            transition: all 0.5s ease-in-out;
+            padding: 1em 2em;
+            font-size: 15px;
+            font-weight: bold;
+            border-width: 0;
+            border-radius: 1.5em;
+            text-transform: uppercase;
+            transition: .2s ease;
+            color: white;
+            z-index: 1;
             background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
             background-size: 800% 800%;
             animation: gradient 4s ease infinite;
-            font-weight: 800;
-            letter-spacing: 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
         }
 
-        .button:hover {
-            box-shadow: 1px 1px 200px #252525;
-            color: #fff;
-            border: none;
+        .btn::before {
+            position: absolute;
+            content: '';
+            width: 120%;
+            height: 260%;
+            background-image: linear-gradient(135deg, rgba(0,5,255,1) 0%, rgba(255,0,159,1) 100%);
         }
 
-        .button .play-icon::before {
-            content: '▶️';
-            display: inline-block;
-            animation: play-animation 1s infinite;
+        .btn::after {
+            position: absolute;
+            content: '';
+            width: 88%;
+            height: 80%;
+            border-width: 0;
+            border-radius: 1.2em;
+            background-color: black;
+            opacity: .7;
+            transition: 100ms ease;
         }
 
-        .button .pause-icon::before {
-            content: '⏸️';
-            display: inline-block;
-            animation: pause-animation 1s infinite;
+        .btn:hover {
+            transform: scale(1.1);
         }
 
-        @keyframes play-animation {
-            0%, 100% {
-                transform: scale(1);
+        .btn:hover::after {
+            opacity: .5;
+        }
+
+        .btn:hover::before {
+            animation: turn_4810 .4s infinite linear;
+        }
+
+        .btn:active {
+            transform: scale(1.05);
+        }
+
+        .btn:active::before {
+            transform: scale(1.05);
+            animation: turn_4810 .2s infinite linear;
+        }
+
+        @keyframes turn_4810 {
+            0% {
+                transform: rotate(0deg);
             }
-            50% {
-                transform: scale(1.1);
-            }
-        }
 
-        @keyframes pause-animation {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.9);
+            100% {
+                transform: rotate(360deg);
             }
         }
 
@@ -206,12 +218,12 @@
             color: #25d366;
         }
 
-        .dark-mode .button {
+        .dark-mode .btn {
             border-color: #ffffff;
             color: #ffffff;
         }
 
-        .dark-mode .button:hover {
+        .dark-mode .btn:hover {
             box-shadow: 1px 1px 200px #ffffff;
         }
 
@@ -234,78 +246,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        .btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 1em 2em;
-            font-size: 15px;
-            font-weight: bold;
-            border-width: 0;
-            border-radius: 1.5em;
-            text-transform: uppercase;
-            transition: .2s ease;
-        }
-
-        .text {
-            font-size: 1.2em;
-            color: white;
-            z-index: 1;
-        }
-
-        .btn::before {
-            position: absolute;
-            content: '';
-            width: 120%;
-            height: 260%;
-            background-image: linear-gradient(135deg, rgba(0,5,255,1) 0%, rgba(255,0,159,1) 100%);
-        }
-
-        .btn::after {
-            position: absolute;
-            content: '';
-            width: 88%;
-            height: 80%;
-            border-width: 0;
-            border-radius: 1.2em;
-            background-color: black;
-            opacity: .7;
-            transition: 100ms ease;
-        }
-
-        .btn:hover.btn {
-            transform: scale(1.1);
-        }
-
-        .btn:hover.btn::after {
-            opacity: .5;
-        }
-
-        .btn:hover.btn::before {
-            animation: turn_4810 .4s infinite linear;
-        }
-
-        .btn:active.btn {
-            transform: scale(1.05);
-        }
-
-        .btn:active.btn::before {
-            transform: scale(1.05);
-            animation: turn_4810 .2s infinite linear;
-        }
-
-        @keyframes turn_4810 {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
     </style>
 </head>
 <body>
@@ -317,47 +257,44 @@
         <main>
             <div class="article-background">
                 <article>
-                    <p>Website kami sedang dalam pemeliharaan. Kami akan segera kembali dengan pembaruan yang lebih baik.</p>
+                    <p>Website kami sedang dalam pemeliharaan untuk meningkatkan layanan dan memberikan pengalaman yang lebih baik.</p>
+                    <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali!</p>
+                    <p>— Tim CODERSTOREID.COM</p>
+                    <div class="countdown-container">
+                        <p class="countdown-title">Perkiraan Waktu Tersisa</p>
+                        <div class="countdown">
+                            <div class="day">00<br><span>Hari</span></div>
+                            <div class="hour">00<br><span>Jam</span></div>
+                            <div class="minute">00<br><span>Menit</span></div>
+                            <div class="second">00<br><span>Detik</span></div>
+                        </div>
+                    </div>
                 </article>
             </div>
-            <div class="countdown-container">
-                <div class="countdown-title">Countdown Pemeliharaan:</div>
-                <div class="countdown">
-                    <div>
-                        <div id="days">0</div>
-                        <span>Hari</span>
-                    </div>
-                    <div>
-                        <div id="hours">0</div>
-                        <span>Jam</span>
-                    </div>
-                    <div>
-                        <div id="minutes">0</div>
-                        <span>Menit</span>
-                    </div>
-                    <div>
-                        <div id="seconds">0</div>
-                        <span>Detik</span>
-                    </div>
-                </div>
-            </div>
         </main>
+        <footer>
+            <p id="localTimeContainer"></p>
+            <p>&copy; 2024 CODERSTOREID.COM. All rights reserved.</p>
+        </footer>
     </div>
-    <footer>
-        &copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a>. All rights reserved.
-    </footer>
-    <div id="popup" class="popup">
-        <span class="popup-close" onclick="closePopup()">×</span>
-        <p>Kami akan segera kembali online. Terima kasih atas kesabaran Anda.</p>
-        <p>Hubungi kami melalui <a href="https://wa.me/1234567890">WhatsApp</a> jika Anda memiliki pertanyaan mendesak.</p>
-    </div>
-    <div class="button" onclick="togglePlayPause()">
-        <span id="playPauseIcon" class="play-icon"></span>
-    </div>
-    <script>
-        let countdownDate = new Date("Jun 15, 2024 00:00:00").getTime();
 
-        let countdownFunction = setInterval(function() {
+    <div id="popup" class="popup">
+        <div class="popup-close" onclick="hidePopup()">×</div>
+        <p>Perlu bantuan? Hubungi tim kami di <a href="https://wa.me/6281914343141" target="_blank">WhatsApp</a>.</p>
+    </div>
+
+    <button class="btn" onclick="toggleAudio()">
+        <span class="text">Play</span>
+        <span class="text" style="display:none;">Stop</span>
+    </button>
+
+    <iframe id="backgroundMusic" width="0" height="0" src="" frameborder="0" allow="autoplay" style="display: none;"></iframe>
+
+    <script>
+        let countdownDate = new Date('2024-07-01T00:00:00').getTime();
+        let countdownElement = document.querySelector('.countdown');
+
+        function updateCountdown() {
             let now = new Date().getTime();
             let distance = countdownDate - now;
 
@@ -366,40 +303,53 @@
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            countdownElement.querySelector('.day').innerHTML = days + "<br><span>Hari</span>";
+            countdownElement.querySelector('.hour').innerHTML = hours + "<br><span>Jam</span>";
+            countdownElement.querySelector('.minute').innerHTML = minutes + "<br><span>Menit</span>";
+            countdownElement.querySelector('.second').innerHTML = seconds + "<br><span>Detik</span>";
 
             if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.querySelector(".countdown-container").innerHTML = "Pemeliharaan Selesai!";
+                clearInterval(updateInterval);
+                countdownElement.innerHTML = "Maintenance Selesai";
             }
-        }, 1000);
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
         }
 
-        setTimeout(function() {
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("popup").style.animation = "fadeIn 1s";
-        }, 3000);
+        let updateInterval = setInterval(updateCountdown, 1000);
 
-        let audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-        let isPlaying = false;
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
 
-        function togglePlayPause() {
-            let playPauseIcon = document.getElementById("playPauseIcon");
-            if (isPlaying) {
-                audio.pause();
-                playPauseIcon.className = 'play-icon';
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        setTimeout(showPopup, 5000);
+
+        function toggleAudio() {
+            let iframe = document.getElementById('backgroundMusic');
+            let playText = document.querySelector('.btn .text:nth-child(1)');
+            let stopText = document.querySelector('.btn .text:nth-child(2)');
+
+            if (iframe.src === '') {
+                iframe.src = 'https://www.youtube.com/embed/F9h-T4sQ6aQ?autoplay=1';
+                playText.style.display = 'none';
+                stopText.style.display = 'block';
             } else {
-                audio.play();
-                playPauseIcon.className = 'pause-icon';
+                iframe.src = '';
+                playText.style.display = 'block';
+                stopText.style.display = 'none';
             }
-            isPlaying = !isPlaying;
         }
+
+        function updateTime() {
+            let now = new Date();
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            document.getElementById('localTimeContainer').innerText = 'Waktu Lokal: ' + now.toLocaleString('id-ID', options);
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
     </script>
 </body>
 </html>
