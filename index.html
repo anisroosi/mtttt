@@ -188,6 +188,32 @@
             animation: turn_4810 .2s infinite linear;
         }
 
+        .btn span.text {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.2s;
+        }
+
+        .btn span.text:nth-child(1) {
+            opacity: 1;
+        }
+
+        .btn span.text:nth-child(2) {
+            opacity: 0;
+        }
+
+        .btn.playing span.text:nth-child(1) {
+            opacity: 0;
+        }
+
+        .btn.playing span.text:nth-child(2) {
+            opacity: 1;
+        }
+
         @keyframes turn_4810 {
             0% {
                 transform: rotate(0deg);
@@ -196,6 +222,17 @@
             100% {
                 transform: rotate(360deg);
             }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .dark-mode {
@@ -235,17 +272,6 @@
         .dark-mode .countdown div span {
             color: #cccccc;
         }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
     </style>
 </head>
 <body>
@@ -278,17 +304,16 @@
         </footer>
     </div>
 
-    <div id="popup" class="popup">
-        <div class="popup-close" onclick="hidePopup()">×</div>
-        <p>Perlu bantuan? Hubungi tim kami di <a href="https://wa.me/6281914343141" target="_blank">WhatsApp</a>.</p>
+    <div class="popup" id="popup">
+        <span class="popup-close" onclick="hidePopup()">×</span>
+        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285157222272">WhatsApp</a> jika ada pertanyaan.</p>
     </div>
 
     <button class="btn" onclick="toggleAudio()">
-        <span class="text">Play</span>
-        <span class="text" style="display:none;">Stop</span>
+        <span class="text">PLAY MUSIC</span>
+        <span class="text">STOP MUSIC</span>
     </button>
-
-    <iframe id="backgroundMusic" width="0" height="0" src="" frameborder="0" allow="autoplay" style="display: none;"></iframe>
+    <iframe id="backgroundMusic" style="display: none;"></iframe>
 
     <script>
         let countdownDate = new Date('2024-07-01T00:00:00').getTime();
@@ -328,17 +353,16 @@
 
         function toggleAudio() {
             let iframe = document.getElementById('backgroundMusic');
+            let button = document.querySelector('.btn');
             let playText = document.querySelector('.btn .text:nth-child(1)');
             let stopText = document.querySelector('.btn .text:nth-child(2)');
 
             if (iframe.src === '') {
-                iframe.src = 'https://www.youtube.com/embed/F9h-T4sQ6aQ?autoplay=1';
-                playText.style.display = 'none';
-                stopText.style.display = 'block';
+                iframe.src = 'https://www.youtube.com/embed/94jNXxH8U8c?si=sTmNe4HDJBrlhzSe&autoplay=1';
+                button.classList.add('playing');
             } else {
                 iframe.src = '';
-                playText.style.display = 'block';
-                stopText.style.display = 'none';
+                button.classList.remove('playing');
             }
         }
 
