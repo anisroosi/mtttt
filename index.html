@@ -128,53 +128,112 @@
         }
 
         .btn {
-            height: 80px;
-            width: 250px;
-            cursor: pointer;
-            border: 2px solid #252525;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            border-radius: 30px;
-            color: #333;
-            transition: all 0.5s ease-in-out;
+            padding: 1.5em 3em;
+            font-size: 18px;
+            font-weight: bold;
+            border-width: 0;
+            border-radius: 2em;
+            text-transform: uppercase;
+            transition: .2s ease;
+            color: white;
+            z-index: 1;
             background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
             background-size: 800% 800%;
             animation: gradient 4s ease infinite;
-            font-weight: 800;
-            letter-spacing: 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            z-index: 100;
-            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn::before {
+            position: absolute;
+            content: '';
+            width: 120%;
+            height: 260%;
+            background-image: linear-gradient(135deg, rgba(0,5,255,1) 0%, rgba(255,0,159,1) 100%);
+        }
+
+        .btn::after {
+            position: absolute;
+            content: '';
+            width: 88%;
+            height: 80%;
+            border-width: 0;
+            border-radius: 1.2em;
+            background-color: black;
+            opacity: .7;
+            transition: 100ms ease;
         }
 
         .btn:hover {
-            box-shadow: 1px 1px 200px #252525;
-            color: #fff;
-            border: none;
+            transform: scale(1.1);
         }
 
-        .btn .text {
-            display: none;
+        .btn:hover::after {
+            opacity: .5;
         }
 
-        .btn.playing .play-text {
-            display: none;
+        .btn:hover::before {
+            animation: turn_4810 .4s infinite linear;
         }
 
-        .btn.playing .stop-text {
-            display: block;
+        .btn:active {
+            transform: scale(1.05);
         }
 
-        .btn:not(.playing) .play-text {
-            display: block;
+        .btn:active::before {
+            transform: scale(1.05);
+            animation: turn_4810 .2s infinite linear;
         }
 
-        .btn:not(.playing) .stop-text {
-            display: none;
+        .btn span.text {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.2s;
+        }
+
+        .btn span.text:nth-child(1) {
+            opacity: 1;
+        }
+
+        .btn span.text:nth-child(2) {
+            opacity: 0;
+        }
+
+        .btn.playing span.text:nth-child(1) {
+            opacity: 0;
+        }
+
+        .btn.playing span.text:nth-child(2) {
+            opacity: 1;
+        }
+
+        @keyframes turn_4810 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .dark-mode {
@@ -214,19 +273,6 @@
         .dark-mode .countdown div span {
             color: #cccccc;
         }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .ad-container {
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-        }
     </style>
 </head>
 <body>
@@ -255,54 +301,46 @@
         </main>
         <footer>
             <p id="localTimeContainer"></p>
+            <p>&copy; 2024 CODERSTOREID.COM</p>
         </footer>
     </div>
-
     <div class="popup" id="popup">
-        <span class="popup-close" onclick="hidePopup()">×</span>
-        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285740234975">WhatsApp</a> jika ada pertanyaan.</p>
+        <span class="popup-close" onclick="hidePopup()">x</span>
+        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285157222272">WhatsApp</a> jika ada pertanyaan.</p>
     </div>
 
     <button class="btn" onclick="toggleAudio()">
-        <span class="text play-text">PLAY MUSIC</span>
-        <span class="text stop-text">STOP MUSIC</span>
+        <span class="text">PLAY MUSIC</span>
+        <span class="text">STOP MUSIC</span>
     </button>
-    <iframe id="backgroundMusic" style="display: none;" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
-
-    <div class="ad-container" id="ad-container">
-        <img src="https://example.com/ads/ad-banner.jpg" alt="Ad Banner">
-    </div>
+    <iframe id="backgroundMusic" style="display: none;"></iframe>
 
     <script>
-        // Fungsi untuk mendeteksi AdBlock
-        function detectAdBlock() {
-            const adContainer = document.getElementById('ad-container');
-            if (!adContainer || adContainer.offsetHeight === 0) {
-                alert('AdBlock terdeteksi. Harap nonaktifkan AdBlocker Anda untuk mengakses konten lengkap.');
+        let countdownDate = new Date('2024-07-01T00:00:00').getTime();
+        let countdownElement = document.querySelector('.countdown');
+
+        function updateCountdown() {
+            let now = new Date().getTime();
+            let distance = countdownDate - now;
+
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.querySelector('.day').innerHTML = days + "<br><span>Hari</span>";
+            countdownElement.querySelector('.hour').innerHTML = hours + "<br><span>Jam</span>";
+            countdownElement.querySelector('.minute').innerHTML = minutes + "<br><span>Menit</span>";
+            countdownElement.querySelector('.second').innerHTML = seconds + "<br><span>Detik</span>";
+
+            if (distance < 0) {
+                clearInterval(updateInterval);
+                countdownElement.innerHTML = "Maintenance Selesai";
             }
         }
 
-        detectAdBlock();
+        let updateInterval = setInterval(updateCountdown, 1000);
 
-        // Fungsi untuk toggle audio
-        function toggleAudio() {
-            const iframe = document.getElementById('backgroundMusic');
-            const button = document.querySelector('.btn');
-            const playText = document.querySelector('.btn .play-text');
-            const stopText = document.querySelector('.btn .stop-text');
-
-            if (iframe.style.display === 'none') {
-                iframe.src = 'https://www.youtube.com/embed/videoseries?list=PLTxwvuPTKlssCerUVwWfIdj_Uj9-SEU0-&autoplay=1';
-                iframe.style.display = 'block';
-                button.classList.add('playing');
-            } else {
-                iframe.src = '';
-                iframe.style.display = 'none';
-                button.classList.remove('playing');
-            }
-        }
-
-        // Fungsi untuk menampilkan dan menyembunyikan popup
         function showPopup() {
             document.getElementById('popup').style.display = 'block';
         }
@@ -313,39 +351,31 @@
 
         setTimeout(showPopup, 5000);
 
-        // Fungsi untuk memperbarui waktu lokal
+        function toggleAudio() {
+            let iframe = document.getElementById('backgroundMusic');
+            let button = document.querySelector('.btn');
+            let playText = document.querySelector('.btn .text:nth-child(1)');
+            let stopText = document.querySelector('.btn .text:nth-child(2)');
+
+            if (iframe.src === '') {
+                iframe.src = 'https://www.youtube.com/embed/videoseries?list=PLTxwvuPTKlssCerUVwWfIdj_Uj9-SEU0-&autoplay=1';
+                iframe.style.display = 'block';
+                button.classList.add('playing');
+            } else {
+                iframe.src = '';
+                iframe.style.display = 'none';
+                button.classList.remove('playing');
+            }
+        }
+
         function updateTime() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            let now = new Date();
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
             document.getElementById('localTimeContainer').innerText = 'Waktu Lokal: ' + now.toLocaleString('id-ID', options);
         }
 
         setInterval(updateTime, 1000);
         updateTime();
-
-        // Fungsi untuk hitung mundur
-        const countdown = () => {
-            const countDate = new Date("July 1, 2024 00:00:00").getTime();
-            const now = new Date().getTime();
-            const gap = countDate - now;
-
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
-
-            const textDay = Math.floor(gap / day);
-            const textHour = Math.floor((gap % day) / hour);
-            const textMinute = Math.floor((gap % hour) / minute);
-            const textSecond = Math.floor((gap % minute) / second);
-
-            document.querySelector('.day').innerText = textDay;
-            document.querySelector('.hour').innerText = textHour;
-            document.querySelector('.minute').innerText = textMinute;
-            document.querySelector('.second').innerText = textSecond;
-        };
-
-        setInterval(countdown, 1000);
     </script>
 </body>
 </html>
