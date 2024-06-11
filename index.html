@@ -128,11 +128,8 @@
         }
 
         .btn {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            height: 60px;
-            width: 220px;
+            height: 80px;
+            width: 250px;
             cursor: pointer;
             border: 2px solid #252525;
             overflow: hidden;
@@ -147,8 +144,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
             z-index: 100;
-            font-size: 1.2em;
+            font-size: 1.5rem;
         }
 
         .btn:hover {
@@ -158,22 +158,23 @@
         }
 
         .btn .text {
-            margin: 0 10px;
-            font-size: 1em;
+            display: none;
         }
 
-        .article-background {
-            height: auto;
-            width: 100%;
-            max-width: 600px;
-            background-color: transparent;
-            border: 2px solid #252525;
-            overflow: hidden;
-            border-radius: 30px;
-            color: #333;
-            transition: all 0.5s ease-in-out;
-            padding: 20px;
-            margin-top: 20px;
+        .btn.playing .play-text {
+            display: none;
+        }
+
+        .btn.playing .stop-text {
+            display: block;
+        }
+
+        .btn:not(.playing) .play-text {
+            display: block;
+        }
+
+        .btn:not(.playing) .stop-text {
+            display: none;
         }
 
         .dark-mode {
@@ -212,11 +213,6 @@
 
         .dark-mode .countdown div span {
             color: #cccccc;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
         }
 
         @keyframes gradient {
@@ -268,45 +264,41 @@
     </div>
 
     <button class="btn" onclick="toggleAudio()">
-        <span class="text">PLAY MUSIC</span>
-        <span class="text" style="display: none;">STOP MUSIC</span>
+        <span class="text play-text">PLAY MUSIC</span>
+        <span class="text stop-text">STOP MUSIC</span>
     </button>
-    <iframe id="backgroundMusic" style="display: none;"></iframe>
+    <iframe id="backgroundMusic" style="display: none;" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
 
     <div class="ad-container" id="ad-container">
         <img src="https://example.com/ads/ad-banner.jpg" alt="Ad Banner">
     </div>
 
     <script>
-        // Deteksi AdBlock
+        // Fungsi untuk mendeteksi AdBlock
         function detectAdBlock() {
             const adContainer = document.getElementById('ad-container');
             if (!adContainer || adContainer.offsetHeight === 0) {
-                alert('AdBlock terdeteksi. Silakan nonaktifkan AdBlocker Anda untuk mengakses konten penuh.');
+                alert('AdBlock terdeteksi. Harap nonaktifkan AdBlocker Anda untuk mengakses konten lengkap.');
             }
         }
 
         detectAdBlock();
 
-        // Fungsi toggle audio
+        // Fungsi untuk toggle audio
         function toggleAudio() {
             const iframe = document.getElementById('backgroundMusic');
             const button = document.querySelector('.btn');
-            const playText = document.querySelector('.btn .text:nth-child(1)');
-            const stopText = document.querySelector('.btn .text:nth-child(2)');
+            const playText = document.querySelector('.btn .play-text');
+            const stopText = document.querySelector('.btn .stop-text');
 
             if (iframe.style.display === 'none') {
                 iframe.src = 'https://www.youtube.com/embed/videoseries?list=PLTxwvuPTKlssCerUVwWfIdj_Uj9-SEU0-&autoplay=1';
                 iframe.style.display = 'block';
                 button.classList.add('playing');
-                playText.style.display = 'none';
-                stopText.style.display = 'block';
             } else {
                 iframe.src = '';
                 iframe.style.display = 'none';
                 button.classList.remove('playing');
-                playText.style.display = 'block';
-                stopText.style.display = 'none';
             }
         }
 
@@ -331,47 +323,29 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // Fungsi hitung mundur
-        const countdown = document.querySelector('.countdown');
-        const daysElement = countdown.querySelector('.day');
-        const hoursElement = countdown.querySelector('.hour');
-        const minutesElement = countdown.querySelector('.minute');
-        const secondsElement = countdown.querySelector('.second');
+        // Fungsi untuk hitung mundur
+        const countdown = () => {
+            const countDate = new Date("July 1, 2024 00:00:00").getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
 
-        function updateCountdown() {
-            const targetDate = new Date('2024-12-31T23:59:59');
-            const now = new Date();
-            const timeDiff = targetDate - now;
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
 
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
 
-            daysElement.innerHTML = days + '<br><span>Hari</span>';
-            hoursElement.innerHTML = hours + '<br><span>Jam</span>';
-            minutesElement.innerHTML = minutes + '<br><span>Menit</span>';
-            secondsElement.innerHTML = seconds + '<br><span>Detik</span>';
-        }
+            document.querySelector('.day').innerText = textDay;
+            document.querySelector('.hour').innerText = textHour;
+            document.querySelector('.minute').innerText = textMinute;
+            document.querySelector('.second').innerText = textSecond;
+        };
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Fungsi Dark Mode
-        function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-        }
-
-        // Aktifkan Dark Mode berdasarkan waktu lokal
-        function setDarkModeBasedOnTime() {
-            const hour = new Date().getHours();
-            if (hour >= 18 || hour < 6) {
-                document.body.classList.add('dark-mode');
-            }
-        }
-
-        setDarkModeBasedOnTime();
+        setInterval(countdown, 1000);
     </script>
 </body>
 </html>
