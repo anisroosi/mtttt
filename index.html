@@ -231,10 +231,28 @@
             background-color: #333;
             color: #fff;
             transition: background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            width: 200px;
+            height: 50px;
         }
 
         #audio-controls button:hover {
             background-color: #555;
+        }
+
+        #audio-controls button:before {
+            content: "▶";
+            font-size: 1.5rem;
+            position: absolute;
+            left: 20px;
+            transition: all 0.5s;
+        }
+
+        #audio-controls button.playing:before {
+            content: "⏸";
+            left: 20px;
+            transition: all 0.5s;
         }
     </style>
 </head>
@@ -265,21 +283,19 @@
                 <!-- Lokasi dan jam akan ditampilkan di sini -->
             </div>
             <div id="audio-controls">
-                <button onclick="playAudio()">Putar Musik</button>
-                <button onclick="pauseAudio()">Hentikan Musik</button>
+                <button id="playPauseButton" onclick="toggleAudio()">Putar Musik</button>
             </div>
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a> - Semua Hak Dilindungi.</p>
+        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a></p>
     </footer>
 
     <div id="popup" class="popup">
-        <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        <p>Jangan khawatir, meskipun situs web kami sedang dalam pemeliharaan, Anda masih dapat melakukan transaksi melalui <a href="https://wa.me/6285740234975">layanan pelanggan kami</a>.</p>
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+        Hubungi kami di WhatsApp: <a href="https://wa.me/6281933379218" target="_blank">+62 819-3337-9218</a>
     </div>
 
-    <!-- Integrasi YouTube untuk musik latar -->
     <iframe id="backgroundMusic" width="0" height="0" src="" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
     <script>
@@ -351,14 +367,29 @@
         displayLocalTime();
 
         // Kontrol audio
+        let isPlaying = false;
         const playAudio = () => {
             document.getElementById('backgroundMusic').style.display = 'block';
-            document.getElementById('backgroundMusic').src = 'https://www.youtube.com/embed/W8vG5eGHDw8?autoplay=1&loop=1&playlist=W8vG5eGHDw8';
+            document.getElementById('backgroundMusic').src = 'https://www.youtube.com/live/W8vG5eGHDw8?si=APdXmnciNIKsgyoc&autoplay=1&loop=1&playlist=W8vG5eGHDw8';
+            isPlaying = true;
+            document.getElementById('playPauseButton').classList.add('playing');
+            document.getElementById('playPauseButton').textContent = 'Hentikan Musik';
         };
 
         const pauseAudio = () => {
             document.getElementById('backgroundMusic').style.display = 'none';
             document.getElementById('backgroundMusic').src = '';
+            isPlaying = false;
+            document.getElementById('playPauseButton').classList.remove('playing');
+            document.getElementById('playPauseButton').textContent = 'Putar Musik';
+        };
+
+        const toggleAudio = () => {
+            if (isPlaying) {
+                pauseAudio();
+            } else {
+                playAudio();
+            }
         };
     </script>
 </body>
