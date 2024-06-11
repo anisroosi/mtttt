@@ -245,7 +245,11 @@
     </div>
 
     <!-- Integrasi YouTube untuk musik latar -->
-    <iframe id="backgroundMusic" width="0" height="0" src="https://www.youtube.com/embed/Is03gZsBeq0?autoplay=1&loop=1&playlist=Is03gZsBeq0" frameborder="0" allow="autoplay" style="display:none;"></iframe>
+    <audio autoplay style="display:none;">
+        <source src="https://www.youtube.com/live/W8vG5eGHDw8?si=ascImB1naQ9yeVfx" type="audio/mpeg">
+        <source src="https://www.youtube.com/live/LAtTQj2gfrU?si=DfEgoBI8cCS66mrd" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <button class="button" id="darkModeButton" onclick="toggleDarkMode()">
         <span class="btn-txt">Mode Gelap</span>
