@@ -205,6 +205,28 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        #audio-controls {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        #audio-controls button {
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        #audio-controls button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -233,6 +255,10 @@
             <div id="localTimeContainer" style="margin-top: 2rem;">
                 <!-- Lokasi dan jam akan ditampilkan di sini -->
             </div>
+            <div id="audio-controls">
+                <button onclick="playAudio()">Putar Musik</button>
+                <button onclick="pauseAudio()">Hentikan Musik</button>
+            </div>
         </main>
     </div>
     <footer>
@@ -245,15 +271,7 @@
     </div>
 
     <!-- Integrasi YouTube untuk musik latar -->
-    <audio autoplay style="display:none;">
-        <source src="https://www.youtube.com/live/W8vG5eGHDw8?si=ascImB1naQ9yeVfx" type="audio/mpeg">
-        <source src="https://www.youtube.com/live/LAtTQj2gfrU?si=DfEgoBI8cCS66mrd" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <button class="button" id="darkModeButton" onclick="toggleDarkMode()">
-        <span class="btn-txt">Mode Gelap</span>
-    </button>
+    <iframe id="backgroundMusic" width="0" height="0" src="https://www.youtube.com/embed/W8vG5eGHDw8?autoplay=1&loop=1&playlist=W8vG5eGHDw8" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
     <script>
         // Penghitung waktu mundur
@@ -322,6 +340,17 @@
         };
 
         displayLocalTime();
+
+        // Kontrol audio
+        const playAudio = () => {
+            document.getElementById('backgroundMusic').style.display = 'block';
+            document.getElementById('backgroundMusic').src = 'https://www.youtube.com/embed/W8vG5eGHDw8?autoplay=1&loop=1&playlist=W8vG5eGHDw8';
+        };
+
+        const pauseAudio = () => {
+            document.getElementById('backgroundMusic').style.display = 'none';
+            document.getElementById('backgroundMusic').src = '';
+        };
     </script>
 </body>
 </html>
