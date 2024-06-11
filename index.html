@@ -10,40 +10,33 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             text-align: center;
-            background: #f4f4f4;
-            overflow: hidden;
-            transition: background 0.3s, color 0.3s;
+            background: #f0f0f0;
+            color: #333;
+            transition: background 0.5s, color 0.5s;
         }
 
         .container {
-            background-color: #fff;
+            background-color: transparent;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 90%;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2rem;
-            color: #333;
-            transition: color 0.3s;
+            font-size: 2.5rem;
         }
 
         header p {
-            margin: 0.5rem 0;
+            margin: 0;
             font-size: 1.2rem;
-            color: #666;
-            transition: color 0.3s;
         }
 
         main {
@@ -54,8 +47,6 @@
             margin: 0.5rem 0;
             font-size: 1rem;
             line-height: 1.6;
-            color: #333;
-            transition: color 0.3s;
         }
 
         .countdown-container {
@@ -65,8 +56,6 @@
         .countdown-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #333;
-            transition: color 0.3s;
         }
 
         .countdown {
@@ -76,7 +65,7 @@
         }
 
         .countdown div {
-            background: #f4f4f4;
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             padding: 1rem;
             margin: 0 0.5rem;
@@ -85,55 +74,43 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            color: #333;
-            transition: background 0.3s, color 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            color: #000;
+            transition: background 0.5s, color 0.5s;
         }
 
         .countdown div span {
             font-size: 0.8rem;
             margin-top: 0.5rem;
             color: #555;
-            transition: color 0.3s;
         }
 
         footer {
             font-size: 0.8rem;
-            color: #666;
-            font-weight: bold;
+            color: #333;
             margin-top: auto;
             padding: 1rem 0;
             width: 100%;
             text-align: center;
-            background-color: transparent;
-            transition: color 0.3s;
-        }
-
-        footer a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
         }
 
         .popup {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            color: #000;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             display: none;
             max-width: 300px;
-            transition: background 0.3s, color 0.3s;
         }
 
         .popup a {
             color: #25d366;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
         }
 
         .popup-close {
@@ -142,92 +119,126 @@
             right: 5px;
             cursor: pointer;
             font-size: 18px;
+            color: #000;
+        }
+
+        .button {
+            height: 50px;
+            width: 200px;
+            background-color: transparent;
+            cursor: pointer;
+            border: 2px solid #252525;
+            overflow: hidden;
+            border-radius: 30px;
             color: #333;
-            transition: color 0.3s;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .btn-txt {
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .button:hover {
+            box-shadow: 1px 1px 200px #252525;
+            color: #fff;
+            border: none;
+        }
+
+        .article-background {
+            height: auto;
+            width: 100%;
+            max-width: 600px;
+            background-color: transparent;
+            border: 2px solid #252525;
+            overflow: hidden;
+            border-radius: 30px;
+            color: #333;
+            transition: all 0.5s ease-in-out;
+            padding: 20px;
+            margin-top: 20px;
         }
 
         .dark-mode {
-            background: #333;
-            color: #f4f4f4;
+            background: #121212;
+            color: #ffffff;
         }
 
-        .dark-mode .container {
-            background-color: #444;
-            color: #f4f4f4;
+        .dark-mode .countdown div {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
         }
 
-        .dark-mode header h1, 
-        .dark-mode header p,
-        .dark-mode main p,
-        .dark-mode .countdown-title,
-        .dark-mode .countdown div,
-        .dark-mode .countdown div span,
-        .dark-mode footer,
-        .dark-mode footer a,
-        .dark-mode .popup,
-        .dark-mode .popup a,
-        .dark-mode .popup-close {
-            color: #f4f4f4;
+        .dark-mode .countdown div span {
+            color: #cccccc;
         }
 
-        .dark-mode .popup {
-            background: rgba(68, 68, 68, 0.9);
+        #current-time {
+            font-size: 0.8rem;
+            margin-top: auto;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            position: absolute;
+            bottom: 30px;
         }
 
-        .toggle-dark-mode {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            z-index: 1000;
-            transition: background 0.3s, color 0.3s;
+        #visitor-info {
+            font-size: 0.8rem;
+            margin-top: auto;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            position: absolute;
+            bottom: 15px;
         }
 
         .gear {
+            position: absolute;
+            top: 10%;
+            left: 10%;
             width: 50px;
             height: 50px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cog_font_awesome.svg/1024px-Cog_font_awesome.svg.png');
-            background-size: contain;
-            animation: spin 5s linear infinite;
-            margin-top: 2rem;
+            border: 5px solid #333;
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+        }
+
+        .gear:before, .gear:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
 
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
+        .gear2 {
+            top: 30%;
+            left: 20%;
+            animation-duration: 3s;
+        }
 
-            header h1 {
-                font-size: 1.5rem;
-            }
+        .gear3 {
+            top: 50%;
+            left: 30%;
+            animation-duration: 2s;
+        }
 
-            header p {
-                font-size: 1rem;
-            }
-
-            main p {
-                font-size: 0.9rem;
-            }
-
-            .countdown div {
-                padding: 0.5rem;
-                font-size: 1.5rem;
-            }
-
-            .countdown div span {
-                font-size: 0.7rem;
-            }
+        .gear4 {
+            top: 70%;
+            left: 40%;
+            animation-duration: 5s;
         }
     </style>
 </head>
@@ -238,23 +249,26 @@
             <p>Sedang Dalam Perawatan</p>
         </header>
         <main>
-            <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
-            <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
-            <p>— Tim CODERSTOREID.COM</p>
-            <div class="countdown-container">
-                <p class="countdown-title">Estimasi waktu perbaikan web</p>
-                <div class="countdown">
-                    <div class="day">00<br><span>Hari</span></div>
-                    <div class="hour">00<br><span>Jam</span></div>
-                    <div class="minute">00<br><span>Menit</span></div>
-                    <div class="second">00<br><span>Detik</span></div>
-                </div>
+            <div class="article-background">
+                <article>
+                    <p>Website kami sedang dalam perawatan untuk meningkatkan kualitas layanan. Kami ingin memberikan pengalaman terbaik bagi Anda.</p>
+                    <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali dengan layanan yang lebih baik!</p>
+                    <p>— Tim CODERSTOREID.COM</p>
+                    <div class="countdown-container">
+                        <p class="countdown-title">Estimasi waktu perbaikan web</p>
+                        <div class="countdown">
+                            <div class="day">00<br><span>Hari</span></div>
+                            <div class="hour">00<br><span>Jam</span></div>
+                            <div class="minute">00<br><span>Menit</span></div>
+                            <div class="second">00<br><span>Detik</span></div>
+                        </div>
+                    </div>
+                </article>
             </div>
-            <div class="gear"></div>
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com">CODERSTOREID.COM</a> - All Rights Reserved.</p>
+        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a> - ALL RIGHTS RESERVED.</p>
         <div id="current-time"></div>
         <div id="visitor-info"></div>
     </footer>
@@ -264,100 +278,79 @@
         <p>Jangan khawatir, meskipun website sedang dalam perawatan, Anda masih bisa melakukan transaksi melalui <a href="https://wa.me/6285740234975">customer care kami</a>.</p>
     </div>
 
-    <button class="toggle-dark-mode" onclick="toggleDarkMode()">Dark Mode</button>
+    <div class="gear"></div>
+    <div class="gear gear2"></div>
+    <div class="gear gear3"></div>
+    <div class="gear gear4"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Countdown Timer
-            const countDownDate = new Date("July 1, 2024 00:00:00").getTime();
+        document.addEventListener("DOMContentLoaded", function() {
+            // Toggle dark mode
+            const toggleDarkMode = () => {
+                document.body.classList.toggle("dark-mode");
+                localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+            };
+
+            // Automatically activate dark mode if preferred by the user
+            if (localStorage.getItem("dark-mode") === "true" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.body.classList.add("dark-mode");
+            }
+
+            // Create dark mode button
+            const darkModeButton = document.createElement("button");
+            darkModeButton.className = "button";
+            darkModeButton.innerHTML = '<span class="btn-txt">Dark Mode</span>';
+            darkModeButton.onclick = toggleDarkMode;
+            document.body.appendChild(darkModeButton);
+
+            // Position dark mode button
+            darkModeButton.style.position = "fixed";
+            darkModeButton.style.bottom = "20px";
+            darkModeButton.style.right = "20px";
+            darkModeButton.style.backgroundImage = "linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000)";
+            darkModeButton.style.backgroundSize = "200% 200%";
+            darkModeButton.style.animation = "gradient 5s ease infinite";
+
+            // Animation for RGB button
+            const keyframes = `@keyframes gradient {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }`;
+
+            const styleSheet = document.createElement("style");
+            styleSheet.type = "text/css";
+            styleSheet.innerText = keyframes;
+            document.head.appendChild(styleSheet);
+
+            // Countdown timer
             const countdownElements = {
-                days: document.querySelector('.day'),
-                hours: document.querySelector('.hour'),
-                minutes: document.querySelector('.minute'),
-                seconds: document.querySelector('.second')
+                day: document.querySelector(".day"),
+                hour: document.querySelector(".hour"),
+                minute: document.querySelector(".minute"),
+                second: document.querySelector(".second")
             };
 
-            const updateCountdown = () => {
+            const countdown = () => {
+                const targetDate = new Date("2024-12-31T23:59:59").getTime();
                 const now = new Date().getTime();
-                const distance = countDownDate - now;
+                const difference = targetDate - now;
 
-                if (distance < 0) {
-                    clearInterval(countdownInterval);
-                    return;
-                }
+                if (difference < 0) return;
 
-                countdownElements.days.innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)) + "<br><span>Hari</span>";
-                countdownElements.hours.innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + "<br><span>Jam</span>";
-                countdownElements.minutes.innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + "<br><span>Menit</span>";
-                countdownElements.seconds.innerHTML = Math.floor((distance % (1000 * 60)) / 1000) + "<br><span>Detik</span>";
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                countdownElements.day.innerHTML = `${days}<br><span>Hari</span>`;
+                countdownElements.hour.innerHTML = `${hours}<br><span>Jam</span>`;
+                countdownElements.minute.innerHTML = `${minutes}<br><span>Menit</span>`;
+                countdownElements.second.innerHTML = `${seconds}<br><span>Detik</span>`;
             };
 
-            const countdownInterval = setInterval(updateCountdown, 1000);
-
-            // Show Popup
-            setTimeout(() => {
-                document.getElementById('popup').style.display = 'block';
-            }, 5000);
-
-            // Update Current Time
-            const updateCurrentTime = () => {
-                const now = new Date();
-                const timezones = [
-                    { name: 'WIB (Jakarta)', tz: 'Asia/Jakarta' },
-                    { name: 'WITA (Makassar)', tz: 'Asia/Makassar' },
-                    { name: 'WIT (Jayapura)', tz: 'Asia/Jayapura' },
-                    { name: 'Thailand', tz: 'Asia/Bangkok' },
-                    { name: 'Japan', tz: 'Asia/Tokyo' },
-                    { name: 'Korea', tz: 'Asia/Seoul' },
-                    { name: 'Timor Leste', tz: 'Asia/Dili' }
-                ];
-
-                let timeHTML = '';
-                timezones.forEach(zone => {
-                    const time = new Intl.DateTimeFormat('id-ID', { 
-                        hour: '2-digit', 
-                        minute: '2-digit', 
-                        second: '2-digit', 
-                        timeZone: zone.tz 
-                    }).format(now);
-                    timeHTML += `<p>${zone.name}: ${time}</p>`;
-                });
-
-                document.getElementById('current-time').innerHTML = timeHTML;
-            };
-            updateCurrentTime();
-            setInterval(updateCurrentTime, 1000);
-
-            // Get Visitor Info
-            const getVisitorInfo = () => {
-                fetch('https://api64.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const ip = data.ip;
-                        const userAgent = navigator.userAgent;
-                        const device = /mobile/i.test(userAgent) ? 'Mobile' : /iPad|iPhone|iPod/.test(userAgent) ? 'iOS' : /Android/.test(userAgent) ? 'Android' : 'Desktop';
-                        document.getElementById('visitor-info').innerHTML = `<p>IP Address: ${ip}</p><p>Device: ${device}</p>`;
-                    })
-                    .catch(error => console.error('Error fetching IP:', error));
-            };
-            getVisitorInfo();
-            setInterval(getVisitorInfo, 60000);
-
-            // Dark Mode Toggle
-            window.toggleDarkMode = () => {
-                document.body.classList.toggle('dark-mode');
-            };
-
-            // Disable Inspect and Copy
-            document.addEventListener('contextmenu', event => event.preventDefault());
-            document.addEventListener('keydown', event => {
-                if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
-                    event.preventDefault();
-                }
-            });
-            document.body.addEventListener('copy', event => {
-                event.preventDefault();
-            });
+            countdown();
+            setInterval(countdown, 1000);
         });
     </script>
 </body>
