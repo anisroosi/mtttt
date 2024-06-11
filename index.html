@@ -195,6 +195,7 @@
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cog_font_awesome.svg/1024px-Cog_font_awesome.svg.png');
             background-size: contain;
             animation: spin 5s linear infinite;
+            margin-top: 2rem;
         }
 
         @keyframes spin {
@@ -301,7 +302,28 @@
             // Update Current Time
             const updateCurrentTime = () => {
                 const now = new Date();
-                document.getElementById('current-time').textContent = `Waktu saat ini: ${now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}`;
+                const timezones = [
+                    { name: 'WIB (Jakarta)', tz: 'Asia/Jakarta' },
+                    { name: 'WITA (Makassar)', tz: 'Asia/Makassar' },
+                    { name: 'WIT (Jayapura)', tz: 'Asia/Jayapura' },
+                    { name: 'Thailand', tz: 'Asia/Bangkok' },
+                    { name: 'Japan', tz: 'Asia/Tokyo' },
+                    { name: 'Korea', tz: 'Asia/Seoul' },
+                    { name: 'Timor Leste', tz: 'Asia/Dili' }
+                ];
+
+                let timeHTML = '';
+                timezones.forEach(zone => {
+                    const time = new Intl.DateTimeFormat('id-ID', { 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        second: '2-digit', 
+                        timeZone: zone.tz 
+                    }).format(now);
+                    timeHTML += `<p>${zone.name}: ${time}</p>`;
+                });
+
+                document.getElementById('current-time').innerHTML = timeHTML;
             };
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
