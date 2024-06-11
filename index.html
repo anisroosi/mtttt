@@ -126,17 +126,18 @@
         .button {
             height: 50px;
             width: 200px;
-            background-color: transparent;
+            background: linear-gradient(270deg, #ff0072, #ff00a8, #ff0072);
+            background-size: 600% 600%;
             cursor: pointer;
-            border: 2px solid #252525;
-            overflow: hidden;
+            border: none;
             border-radius: 30px;
-            color: #333;
+            color: #fff;
             transition: all 0.5s ease-in-out;
             position: fixed;
-            bottom: 80px;
-            right: 20px;
+            bottom: 20px;
+            left: 20px;
             z-index: 100; /* Ensure button is above other content */
+            animation: gradient 3s ease infinite;
         }
 
         .btn-txt {
@@ -146,8 +147,6 @@
 
         .button:hover {
             box-shadow: 1px 1px 200px #252525;
-            color: #fff;
-            border: none;
         }
 
         .article-background {
@@ -178,62 +177,15 @@
             color: #cccccc;
         }
 
-        .gear {
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 50px;
-            height: 50px;
-            border: 5px solid #333;
-            border-radius: 50%;
-            animation: spin 4s linear infinite;
-        }
-
-        .gear:before, .gear:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background: #333;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .gear2 {
-            top: 30%;
-            left: 20%;
-            animation-duration: 3s;
-        }
-
-        .gear3 {
-            top: 50%;
-            left: 30%;
-            animation-duration: 2s;
-        }
-
-        .gear4 {
-            top: 70%;
-            left: 40%;
-            animation-duration: 5s;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
-        }
-
-        /* Gradient animation for button */
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
@@ -271,12 +223,10 @@
         <p>Don't worry, even though our website is under maintenance, you can still make transactions through <a href="https://wa.me/6285740234975">our customer care</a>.</p>
     </div>
 
-    <div class="gear"></div>
-    <div class="gear gear2"></div>
-    <div class="gear gear3"></div>
-    <div class="gear gear4"></div>
-
-    <audio id="backgroundMusic" src="YOUR_MUSIC_URL" loop autoplay></audio>
+    <!-- Embed YouTube Video for background music -->
+    <div id="youtubeBackgroundMusic" style="display: none;">
+        <iframe width="0" height="0" src="https://www.youtube.com/embed/Is03gZsBeq0?autoplay=1&loop=1&playlist=Is03gZsBeq0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
     <button class="button" id="darkModeButton" onclick="toggleDarkMode()">
         <span class="btn-txt">Dark Mode</span>
@@ -338,10 +288,6 @@
         };
 
         showPopup();
-
-        // Background music (replace YOUR_MUSIC_URL with your actual music URL)
-        const music = document.getElementById('backgroundMusic');
-        music.volume = 0.3; // Adjust volume (0 to 1)
     </script>
 </body>
 </html>
