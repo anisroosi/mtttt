@@ -105,7 +105,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             display: none;
             max-width: 300px;
-            z-index: 1000; /* Pastikan popup di atas konten lainnya */
+            z-index: 1000;
         }
 
         .popup a {
@@ -135,7 +135,7 @@
             position: fixed;
             bottom: 80px;
             left: 20px;
-            z-index: 100; /* Pastikan tombol di atas konten lainnya */
+            z-index: 100;
             background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
             background-size: 800% 800%;
             animation: gradient 4s ease infinite;
@@ -171,13 +171,28 @@
             color: #ffffff;
         }
 
-        .dark-mode .countdown div {
-            background: rgba(255, 255, 255, 0.1);
+        .dark-mode header p,
+        .dark-mode main p,
+        .dark-mode footer p {
             color: #ffffff;
         }
 
-        .dark-mode .countdown div span {
-            color: #cccccc;
+        .dark-mode .popup {
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+        }
+
+        .dark-mode .popup a {
+            color: #25d366;
+        }
+
+        .dark-mode .button {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .dark-mode .button:hover {
+            box-shadow: 1px 1px 200px #ffffff;
         }
 
         @keyframes fadeIn {
@@ -185,7 +200,6 @@
             100% { opacity: 1; }
         }
 
-        /* Animasi gradasi untuk tombol */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -295,46 +309,15 @@
         showPopup();
 
         // Menampilkan waktu lokal berdasarkan lokasi pengguna
-        const displayLocalTime = (city) => {
+        const displayLocalTime = () => {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            const localTime = now.toLocaleDateString('id-ID', options);
             const container = document.getElementById("localTimeContainer");
-            container.innerHTML = `<a href="https://time.is/${city}" id="time_is_link" rel="nofollow" style="font-size:36px">Waktu di ${city}:</a> <span id="${city}_time" style="font-size:36px"></span>`;
-            const script = document.createElement("script");
-            script.src = "//widget.time.is/t.js";
-            script.onload = () => {
-                time_is_widget.init({ [`${city}_time`]: {} });
-            };
-            document.body.appendChild(script);
+            container.innerHTML = `<p>Waktu Lokal Anda: ${localTime}</p>`;
         };
 
-        // Menggunakan Geolokasi untuk menentukan kota pengguna
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const { latitude, longitude } = position.coords;
-                fetch(`https://geocode.xyz/${latitude},${longitude}?json=1`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const city = data.city || "Lokasi Anda";
-                        displayLocalTime(city);
-                    })
-                    .catch(error => {
-                        console.error("Gagal mendapatkan data geolokasi:", error);
-                        displayLocalTime("Lokasi Anda");
-                    });
-            }, (error) => {
-                console.error("Gagal mendapatkan lokasi pengguna:", error);
-                displayLocalTime("Lokasi Anda");
-            });
-        } else {
-            console.error("Geolokasi tidak didukung oleh browser ini.");
-            displayLocalTime("Lokasi Anda");
-        }
-
-        // Mencegah pengalihan ke time.is
-        document.addEventListener("click", (e) => {
-            if (e.target.tagName === "A" && e.target.href.includes("time.is")) {
-                e.preventDefault();
-            }
-        });
+        displayLocalTime();
     </script>
 </body>
 </html>
