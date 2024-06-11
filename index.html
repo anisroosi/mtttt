@@ -85,6 +85,11 @@
             color: #555;
         }
 
+        .clock {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+
         footer {
             font-size: 0.8rem;
             color: #333;
@@ -209,6 +214,8 @@
                             <div class="minute">00<br><span>Minutes</span></div>
                             <div class="second">00<br><span>Seconds</span></div>
                         </div>
+                        <!-- Clock for current local time -->
+                        <div class="clock" id="localClock">00:00:00</div>
                     </div>
                 </article>
             </div>
@@ -288,6 +295,19 @@
         };
 
         showPopup();
+
+        // Update the local time clock
+        const updateClock = () => {
+            const clockElement = document.getElementById("localClock");
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        };
+
+        updateClock();
+        setInterval(updateClock, 1000); // Update every second
     </script>
 </body>
 </html>
