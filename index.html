@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <title>CODERSTOREID.COM - Under Maintenance</title>
+    <title>CODERSTOREID.COM - Sedang dalam Pemeliharaan</title>
     <style>
         body {
             margin: 0;
@@ -85,11 +85,6 @@
             color: #555;
         }
 
-        .clock {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-        }
-
         footer {
             font-size: 0.8rem;
             color: #333;
@@ -110,7 +105,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             display: none;
             max-width: 300px;
-            z-index: 1000; /* Ensure popup is above other content */
+            z-index: 1000; /* Pastikan popup di atas konten lainnya */
         }
 
         .popup a {
@@ -131,27 +126,30 @@
         .button {
             height: 50px;
             width: 200px;
-            background: linear-gradient(270deg, #ff0072, #ff00a8, #ff0072);
-            background-size: 600% 600%;
             cursor: pointer;
-            border: none;
+            border: 2px solid #252525;
+            overflow: hidden;
             border-radius: 30px;
-            color: #fff;
+            color: #333;
             transition: all 0.5s ease-in-out;
             position: fixed;
-            bottom: 20px;
+            bottom: 80px;
             left: 20px;
-            z-index: 100; /* Ensure button is above other content */
-            animation: gradient 3s ease infinite;
-        }
-
-        .btn-txt {
+            z-index: 100; /* Pastikan tombol di atas konten lainnya */
+            background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
+            background-size: 800% 800%;
+            animation: gradient 4s ease infinite;
             font-weight: 800;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .button:hover {
             box-shadow: 1px 1px 200px #252525;
+            color: #fff;
+            border: none;
         }
 
         .article-background {
@@ -182,15 +180,16 @@
             color: #cccccc;
         }
 
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Animasi gradasi untuk tombol */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -198,49 +197,48 @@
     <div class="container">
         <header>
             <h1><a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a></h1>
-            <p>Under Maintenance</p>
+            <p>Sedang dalam Pemeliharaan</p>
         </header>
         <main>
             <div class="article-background">
                 <article>
-                    <p>Our website is currently under maintenance to improve our services and provide you with a better experience.</p>
-                    <p>Thank you for your patience and understanding. We will be back shortly!</p>
-                    <p>— The CODERSTOREID.COM Team</p>
+                    <p>Website kami sedang dalam pemeliharaan untuk meningkatkan layanan dan memberikan pengalaman yang lebih baik.</p>
+                    <p>Terima kasih atas kesabaran dan pengertiannya. Kami akan segera kembali!</p>
+                    <p>— Tim CODERSTOREID.COM</p>
                     <div class="countdown-container">
-                        <p class="countdown-title">Estimated Time Remaining</p>
+                        <p class="countdown-title">Perkiraan Waktu Tersisa</p>
                         <div class="countdown">
-                            <div class="day">00<br><span>Days</span></div>
-                            <div class="hour">00<br><span>Hours</span></div>
-                            <div class="minute">00<br><span>Minutes</span></div>
-                            <div class="second">00<br><span>Seconds</span></div>
+                            <div class="day">00<br><span>Hari</span></div>
+                            <div class="hour">00<br><span>Jam</span></div>
+                            <div class="minute">00<br><span>Menit</span></div>
+                            <div class="second">00<br><span>Detik</span></div>
                         </div>
-                        <!-- Clock for current local time -->
-                        <div class="clock" id="localClock">00:00:00</div>
                     </div>
                 </article>
+            </div>
+            <div id="localTimeContainer" style="margin-top: 2rem;">
+                <!-- Lokasi dan jam akan ditampilkan di sini -->
             </div>
         </main>
     </div>
     <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a> - ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a> - Semua Hak Dilindungi.</p>
     </footer>
 
     <div id="popup" class="popup">
         <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        <p>Don't worry, even though our website is under maintenance, you can still make transactions through <a href="https://wa.me/6285740234975">our customer care</a>.</p>
+        <p>Jangan khawatir, meskipun situs web kami sedang dalam pemeliharaan, Anda masih dapat melakukan transaksi melalui <a href="https://wa.me/6285740234975">layanan pelanggan kami</a>.</p>
     </div>
 
-    <!-- Embed YouTube Video for background music -->
-    <div id="youtubeBackgroundMusic" style="display: none;">
-        <iframe width="0" height="0" src="https://www.youtube.com/embed/Is03gZsBeq0?autoplay=1&loop=1&playlist=Is03gZsBeq0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <!-- Integrasi YouTube untuk musik latar -->
+    <iframe id="backgroundMusic" width="0" height="0" src="https://www.youtube.com/embed/Is03gZsBeq0?autoplay=1&loop=1&playlist=Is03gZsBeq0" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
     <button class="button" id="darkModeButton" onclick="toggleDarkMode()">
-        <span class="btn-txt">Dark Mode</span>
+        <span class="btn-txt">Mode Gelap</span>
     </button>
 
     <script>
-        // Countdown timer
+        // Penghitung waktu mundur
         const countdownElements = {
             day: document.querySelector(".day"),
             hour: document.querySelector(".hour"),
@@ -260,22 +258,22 @@
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            countdownElements.day.innerHTML = `${days}<br><span>Days</span>`;
-            countdownElements.hour.innerHTML = `${hours}<br><span>Hours</span>`;
-            countdownElements.minute.innerHTML = `${minutes}<br><span>Minutes</span>`;
-            countdownElements.second.innerHTML = `${seconds}<br><span>Seconds</span>`;
+            countdownElements.day.innerHTML = `${days}<br><span>Hari</span>`;
+            countdownElements.hour.innerHTML = `${hours}<br><span>Jam</span>`;
+            countdownElements.minute.innerHTML = `${minutes}<br><span>Menit</span>`;
+            countdownElements.second.innerHTML = `${seconds}<br><span>Detik</span>`;
         };
 
         countdown();
         setInterval(countdown, 1000);
 
-        // Dark mode
+        // Mode Gelap
         const toggleDarkMode = () => {
             document.body.classList.toggle("dark-mode");
             localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
         };
 
-        // Automatically activate dark mode if preferred by the user or based on system preference
+        // Aktifkan mode gelap otomatis jika diatur oleh pengguna atau berdasarkan preferensi sistem
         const activateDarkMode = () => {
             if (localStorage.getItem("dark-mode") === "true" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
                 document.body.classList.add("dark-mode");
@@ -284,30 +282,52 @@
 
         activateDarkMode();
 
-        // Popup notification
+        // Notifikasi Popup
         const showPopup = () => {
             const popup = document.getElementById("popup");
             popup.style.display = "block";
             popup.style.animation = "fadeIn 1s";
             setTimeout(() => {
                 popup.style.display = "none";
-            }, 5000); // Hide after 5 seconds
+            }, 5000); // Sembunyikan setelah 5 detik
         };
 
         showPopup();
 
-        // Update the local time clock
-        const updateClock = () => {
-            const clockElement = document.getElementById("localClock");
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        // Menampilkan waktu lokal berdasarkan lokasi pengguna
+        const displayLocalTime = (city) => {
+            const container = document.getElementById("localTimeContainer");
+            container.innerHTML = `<a href="https://time.is/${city}" id="time_is_link" rel="nofollow" style="font-size:36px">Waktu di ${city}:</a> <span id="${city}_time" style="font-size:36px"></span>`;
+            const script = document.createElement("script");
+            script.src = "//widget.time.is/t.js";
+            script.onload = () => {
+                time_is_widget.init({ [`${city}_time`]: {} });
+            };
+            document.body.appendChild(script);
         };
 
-        updateClock();
-        setInterval(updateClock, 1000); // Update every second
+        // Menggunakan Geolokasi untuk menentukan kota pengguna
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords;
+                fetch(`https://geocode.xyz/${latitude},${longitude}?json=1`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const city = data.city || "Lokasi Anda";
+                        displayLocalTime(city);
+                    })
+                    .catch(error => {
+                        console.error("Gagal mendapatkan data geolokasi:", error);
+                        displayLocalTime("Lokasi Anda");
+                    });
+            }, (error) => {
+                console.error("Gagal mendapatkan lokasi pengguna:", error);
+                displayLocalTime("Lokasi Anda");
+            });
+        } else {
+            console.error("Geolokasi tidak didukung oleh browser ini.");
+            displayLocalTime("Lokasi Anda");
+        }
     </script>
 </body>
 </html>
