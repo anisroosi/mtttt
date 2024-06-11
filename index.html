@@ -301,13 +301,12 @@
         </main>
         <footer>
             <p id="localTimeContainer"></p>
-            <p>&copy; 2024 CODERSTOREID.COM. All rights reserved.</p>
+            <p>&copy; 2024 CODERSTOREID.COM - All Right's Reserved's</p>
         </footer>
     </div>
-
     <div class="popup" id="popup">
-        <span class="popup-close" onclick="hidePopup()">×</span>
-        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285157222272">WhatsApp</a> jika ada pertanyaan.</p>
+        <span class="popup-close" onclick="hidePopup()">x</span>
+        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285740234975">WhatsApp</a> jika ada pertanyaan.</p>
     </div>
 
     <button class="btn" onclick="toggleAudio()">
@@ -360,9 +359,11 @@
 
             if (iframe.src === '') {
                 iframe.src = 'https://www.youtube.com/embed/94jNXxH8U8c?autoplay=1';
+                iframe.style.display = 'block';
                 button.classList.add('playing');
             } else {
                 iframe.src = '';
+                iframe.style.display = 'none';
                 button.classList.remove('playing');
             }
         }
