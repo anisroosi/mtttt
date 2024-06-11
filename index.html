@@ -92,6 +92,7 @@
             padding: 1rem 0;
             width: 100%;
             text-align: center;
+            transition: color 0.5s;
         }
 
         .popup {
@@ -106,12 +107,14 @@
             display: none;
             max-width: 300px;
             z-index: 1000;
+            transition: background 0.5s, color 0.5s;
         }
 
         .popup a {
             color: #25d366;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.5s;
         }
 
         .popup-close {
@@ -121,6 +124,7 @@
             cursor: pointer;
             font-size: 18px;
             color: #000;
+            transition: color 0.5s;
         }
 
         .button {
@@ -173,7 +177,7 @@
 
         .dark-mode header p,
         .dark-mode main p,
-        .dark-mode footer p {
+        .dark-mode footer {
             color: #ffffff;
         }
 
@@ -215,44 +219,63 @@
             100% { background-position: 0% 50%; }
         }
 
-        #audio-controls {
-            margin-top: 1rem;
+        .play-button {
+            height: 50px;
+            width: 200px;
+            cursor: pointer;
+            border: 2px solid #252525;
+            overflow: hidden;
+            border-radius: 30px;
+            color: #333;
+            transition: all 0.5s ease-in-out;
+            background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
+            background-size: 800% 800%;
+            animation: gradient 4s ease infinite;
+            font-weight: 800;
+            letter-spacing: 2px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            z-index: 100;
         }
 
-        #audio-controls button {
-            margin: 0 0.5rem;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
+        .play-button:hover {
+            box-shadow: 1px 1px 200px #252525;
             color: #fff;
-            transition: background-color 0.3s;
-            position: relative;
-            overflow: hidden;
-            width: 200px;
-            height: 50px;
+            border: none;
         }
 
-        #audio-controls button:hover {
-            background-color: #555;
+        .play-button .play-icon::before {
+            content: '▶️';
+            display: inline-block;
+            animation: play-animation 1s infinite;
         }
 
-        #audio-controls button:before {
-            content: "▶";
-            font-size: 1.5rem;
-            position: absolute;
-            left: 20px;
-            transition: all 0.5s;
+        .play-button .pause-icon::before {
+            content: '⏸️';
+            display: inline-block;
+            animation: pause-animation 1s infinite;
         }
 
-        #audio-controls button.playing:before {
-            content: "⏸";
-            left: 20px;
-            transition: all 0.5s;
+        @keyframes play-animation {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes pause-animation {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
         }
     </style>
 </head>
@@ -279,22 +302,20 @@
                     </div>
                 </article>
             </div>
-            <div id="localTimeContainer" style="margin-top: 2rem;">
-                <!-- Lokasi dan jam akan ditampilkan di sini -->
-            </div>
-            <div id="audio-controls">
-                <button id="playPauseButton" onclick="toggleAudio()">Putar Musik</button>
-            </div>
         </main>
+        <footer>
+            <p id="localTimeContainer"></p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 <a href="https://coderstoreid.com" style="color: inherit; text-decoration: none;">CODERSTOREID.COM</a></p>
-    </footer>
 
     <div id="popup" class="popup">
-        <span class="popup-close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
-        Hubungi kami di WhatsApp: <a href="https://wa.me/6281933379218" target="_blank">+62 819-3337-9218</a>
+        <div class="popup-close" onclick="hidePopup()">×</div>
+        <p>Butuh bantuan? Hubungi kami di <a href="https://wa.me/6281914343141" target="_blank">WhatsApp</a>.</p>
     </div>
+
+    <button class="play-button" onclick="toggleAudio()">
+        <span class="play-icon" id="playPauseIcon"></span>
+    </button>
 
     <iframe id="backgroundMusic" width="0" height="0" src="" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
@@ -353,6 +374,11 @@
             }, 5000); // Sembunyikan setelah 5 detik
         };
 
+        const hidePopup = () => {
+            const popup = document.getElementById("popup");
+            popup.style.display = "none";
+        };
+
         showPopup();
 
         // Menampilkan waktu lokal berdasarkan lokasi pengguna
@@ -367,28 +393,17 @@
         displayLocalTime();
 
         // Kontrol audio
-        let isPlaying = false;
-        const playAudio = () => {
-            document.getElementById('backgroundMusic').style.display = 'block';
-            document.getElementById('backgroundMusic').src = 'https://www.youtube.com/live/W8vG5eGHDw8?si=APdXmnciNIKsgyoc&autoplay=1&loop=1&playlist=W8vG5eGHDw8';
-            isPlaying = true;
-            document.getElementById('playPauseButton').classList.add('playing');
-            document.getElementById('playPauseButton').textContent = 'Hentikan Musik';
-        };
-
-        const pauseAudio = () => {
-            document.getElementById('backgroundMusic').style.display = 'none';
-            document.getElementById('backgroundMusic').src = '';
-            isPlaying = false;
-            document.getElementById('playPauseButton').classList.remove('playing');
-            document.getElementById('playPauseButton').textContent = 'Putar Musik';
-        };
-
         const toggleAudio = () => {
-            if (isPlaying) {
-                pauseAudio();
+            const iframe = document.getElementById('backgroundMusic');
+            const playPauseIcon = document.getElementById('playPauseIcon');
+            if (iframe.style.display === 'none') {
+                iframe.style.display = 'block';
+                iframe.src = 'https://www.youtube.com/live/W8vG5eGHDw8?si=APdXmnciNIKsgyoc&autoplay=1';
+                playPauseIcon.className = 'pause-icon';
             } else {
-                playAudio();
+                iframe.style.display = 'none';
+                iframe.src = '';
+                playPauseIcon.className = 'play-icon';
             }
         };
     </script>
