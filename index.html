@@ -133,11 +133,11 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 1em 2em;
-            font-size: 15px;
+            padding: 1.5em 3em;
+            font-size: 18px;
             font-weight: bold;
             border-width: 0;
-            border-radius: 1.5em;
+            border-radius: 2em;
             text-transform: uppercase;
             transition: .2s ease;
             color: white;
@@ -145,6 +145,7 @@
             background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
             background-size: 800% 800%;
             animation: gradient 4s ease infinite;
+            margin-top: 2rem;
         }
 
         .btn::before {
@@ -306,7 +307,7 @@
 
     <div class="popup" id="popup">
         <span class="popup-close" onclick="hidePopup()">×</span>
-        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285157222272">WhatsApp</a> jika ada pertanyaan.</p>
+        <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285740234975">WhatsApp</a> jika ada pertanyaan.</p>
     </div>
 
     <button class="btn" onclick="toggleAudio()">
@@ -358,7 +359,7 @@
             let stopText = document.querySelector('.btn .text:nth-child(2)');
 
             if (iframe.src === '') {
-                iframe.src = 'https://www.youtube.com/embed/94jNXxH8U8c?si=sTmNe4HDJBrlhzSe&autoplay=1';
+                iframe.src = 'https://www.youtube.com/embed/94jNXxH8U8c?autoplay=1';
                 button.classList.add('playing');
             } else {
                 iframe.src = '';
