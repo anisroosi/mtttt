@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <title>CODERSTOREID.COM - Sedang dalam Pemeliharaan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -14,7 +15,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
             background: #f0f0f0;
             color: #333;
@@ -127,113 +128,64 @@
             transition: color 0.5s;
         }
 
-        .btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 1.5em 3em;
-            font-size: 18px;
-            font-weight: bold;
-            border-width: 0;
-            border-radius: 2em;
-            text-transform: uppercase;
-            transition: .2s ease;
-            color: white;
-            z-index: 1;
-            background: linear-gradient(270deg, #ff6ec4, #7873f5, #2bd2ff, #2bff88);
-            background-size: 800% 800%;
-            animation: gradient 4s ease infinite;
+        .btn-search {
+            background-color: #c9110f;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            text-shadow: none;
+        }
+
+        .btn-search:active {
+            transform: scale(0.9);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .input-search {
+            padding: 0.5rem;
+            border: 1px solid #c9110f;
+            border-radius: 5px;
+            margin-left: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .search-box {
             margin-top: 2rem;
-        }
-
-        .btn::before {
-            position: absolute;
-            content: '';
-            width: 120%;
-            height: 260%;
-            background-image: linear-gradient(135deg, rgba(0,5,255,1) 0%, rgba(255,0,159,1) 100%);
-        }
-
-        .btn::after {
-            position: absolute;
-            content: '';
-            width: 88%;
-            height: 80%;
-            border-width: 0;
-            border-radius: 1.2em;
-            background-color: black;
-            opacity: .7;
-            transition: 100ms ease;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
-        }
-
-        .btn:hover::after {
-            opacity: .5;
-        }
-
-        .btn:hover::before {
-            animation: turn_4810 .4s infinite linear;
-        }
-
-        .btn:active {
-            transform: scale(1.05);
-        }
-
-        .btn:active::before {
-            transform: scale(1.05);
-            animation: turn_4810 .2s infinite linear;
-        }
-
-        .btn span.text {
-            position: absolute;
             display: flex;
-            align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.2s;
+            align-items: center;
         }
 
-        .btn span.text:nth-child(1) {
-            opacity: 1;
+        .youtubeBtn i:active {
+            transform: scale(0.9);
+            transition: all 0.3s ease-in-out;
         }
 
-        .btn span.text:nth-child(2) {
-            opacity: 0;
+        .youtubeBtn span {
+            font-family: 'Lato';
+            font-weight: normal;
+            color: #fff;
+            display: block;
+            font-size: 12px;
+            float: right;
+            line-height: 20px;
+            padding-left: 5px;
         }
 
-        .btn.playing span.text:nth-child(1) {
-            opacity: 0;
-        }
-
-        .btn.playing span.text:nth-child(2) {
-            opacity: 1;
-        }
-
-        @keyframes turn_4810 {
-            0% {
-                transform: rotate(0deg);
+        @keyframes youtubeAnim {
+            0%, 100% {
+                color: #c9110f;
             }
-
-            100% {
-                transform: rotate(360deg);
+            50% {
+                color: #ff0000;
             }
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .youtubeBtn {
+            margin-top: 1rem;
         }
 
         .dark-mode {
@@ -256,13 +208,15 @@
             color: #25d366;
         }
 
-        .dark-mode .btn {
-            border-color: #ffffff;
-            color: #ffffff;
+        .dark-mode .btn-search {
+            background-color: #fff;
+            color: #c9110f;
         }
 
-        .dark-mode .btn:hover {
-            box-shadow: 1px 1px 200px #ffffff;
+        .dark-mode .input-search {
+            border: 1px solid #fff;
+            color: #fff;
+            background-color: #333;
         }
 
         .dark-mode .countdown div {
@@ -299,23 +253,30 @@
                 </article>
             </div>
         </main>
+        <div class="search-box">
+            <button class="btn-search"><i class="fas fa-search"></i></button>
+            <input type="text" class="input-search" id="searchQuery" placeholder="Type to Search...">
+        </div>
+        <iframe id="youtubeIframe" style="display: none; width: 100%; height: 400px; border: none;"></iframe>
         <footer>
+            <p>
+                Created with <i class="fa fa-heart"></i> by
+                <a target="_blank" href="https://coderstoreid.com">Coderstoreid</a>
+            </p>
             <p id="localTimeContainer"></p>
-            <p>&copy; 2024 CODERSTOREID.COM</p>
+            <p>&copy; 2024 CODERSTOREID.COM. All rights reserved.</p>
         </footer>
     </div>
-    <div class="popup" id="popup">
+    <div id="popup" class="popup">
         <span class="popup-close" onclick="hidePopup()">x</span>
         <p>Selamat datang di CODERSTOREID.COM! Hubungi kami di <a href="https://wa.me/6285740234975">WhatsApp</a> jika ada pertanyaan.</p>
     </div>
-
-    <input type="text" id="searchQuery" placeholder="Cari video YouTube">
-    <button class="btn" onclick="searchVideo()">
-        <span class="text">SEARCH VIDEO</span>
-        <span class="text">STOP VIDEO</span>
-    </button>
-    <iframe id="youtubeIframe" style="display: none; width: 100%; height: 400px; border: none;"></iframe>
-    
+    <div class="youtubeBtn">
+        <a target="_blank" href="https://www.youtube.com/AhmadEmran?sub_confirmation=1">
+            <span>Watch on YouTube</span>
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div> 
     <script>
         let countdownDate = new Date('2024-07-01T00:00:00').getTime();
         let countdownElement = document.querySelector('.countdown');
@@ -361,7 +322,7 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        function searchVideo() {
+        document.querySelector('.btn-search').addEventListener('click', function() {
             let query = document.getElementById('searchQuery').value;
             let iframe = document.getElementById('youtubeIframe');
             if (iframe.style.display === 'none') {
@@ -371,7 +332,7 @@
                 iframe.src = '';
                 iframe.style.display = 'none';
             }
-        }
+        });
     </script>
 </body>
 </html>
