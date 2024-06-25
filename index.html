@@ -337,7 +337,7 @@
 
         async function searchYouTube(query) {
             let apiKey = 'AIzaSyBd-tOLQY3Fz8fCBNrqU1iz_IbMbWF66As';  // Ganti dengan API Key YouTube Anda
-            let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${query}&key=${apiKey}`);
+            let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(query)}&key=${apiKey}`);
             let data = await response.json();
             if (data.items && data.items.length > 0) {
                 return data.items[0].id.videoId;
