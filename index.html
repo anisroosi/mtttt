@@ -335,12 +335,30 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        document.querySelector('.btn-search').addEventListener('click', function() {
+        async function searchYouTube(query) {
+            let apiKey = 'YOUR_YOUTUBE_API_KEY';  // Ganti dengan API Key YouTube Anda
+            let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${query}&key=${apiKey}`);
+            let data = await response.json();
+            if (data.items && data.items.length > 0) {
+                return data.items[0].id.videoId;
+            } else {
+                return null;
+            }
+        }
+
+        document.querySelector('.btn-search').addEventListener('click', async function() {
             let query = document.getElementById('searchQuery').value;
             let iframe = document.getElementById('youtubeIframe');
             if (query.trim() !== '') {
-                iframe.src = `https://www.youtube.com/embed?listType=search&list=${query}&autoplay=1`;
-                iframe.style.display = 'block';
+                let videoId = await searchYouTube(query);
+                if (videoId) {
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    iframe.style.display = 'block';
+                } else {
+                    iframe.src = '';
+                    iframe.style.display = 'none';
+                    alert('Video tidak tersedia');
+                }
             } else {
                 iframe.src = '';
                 iframe.style.display = 'none';
